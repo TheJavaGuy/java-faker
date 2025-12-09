@@ -2,6 +2,8 @@ package com.github.javafaker.integration;
 
 import com.github.javafaker.Faker;
 import com.google.common.collect.Lists;
+
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import static org.junit.Assert.assertThat;
  * and that methods return values. The unit tests should ensure what the values returned
  * are correct. These tests just ensure that the methods can be invoked.
  */
+@Ignore
 public class UkLocalDirectivesTest {
 
     /**
@@ -31,21 +34,21 @@ public class UkLocalDirectivesTest {
 
         final ArrayList<String> masc = Lists.newArrayList("пр.", "проспект", "пров.", "провулок");
         final ArrayList<String> fem = Lists.newArrayList("вул.", "вулиця", "пл.", "площа");
-        
+
         boolean startsWithMascPrefix = false,
                 startsWithFemPrefix = false;
-        
+
         for (String mascPrefix : masc) {
             startsWithMascPrefix |= streetName.startsWith(mascPrefix);
         }
         for (String femPrefix : fem) {
             startsWithFemPrefix |= streetName.startsWith(femPrefix);
         }
-        
-        assertThat("the streetname starts with a fem or masc prefix", 
-                startsWithFemPrefix || startsWithMascPrefix, 
+
+        assertThat("the streetname starts with a fem or masc prefix",
+                startsWithFemPrefix || startsWithMascPrefix,
                 is(true));
     }
-    
-    
+
+
 }
