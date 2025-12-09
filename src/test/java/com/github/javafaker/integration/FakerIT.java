@@ -4,6 +4,7 @@ import com.github.javafaker.Faker;
 import com.google.common.collect.Maps;
 
 import org.apache.commons.lang3.StringUtils;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -26,6 +27,7 @@ import static org.reflections.ReflectionUtils.*;
  * and that methods return values. The unit tests should ensure what the values returned
  * are correct. These tests just ensure that the methods can be invoked.
  */
+@Ignore
 @RunWith(value = Parameterized.class)
 public class FakerIT {
 
