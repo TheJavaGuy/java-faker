@@ -1,17 +1,17 @@
-Java Faker
-==========
+# Java Faker
 
 [![Maven Status](https://maven-badges.herokuapp.com/maven-central/com.github.javafaker/javafaker/badge.svg?style=flat)](http://mvnrepository.com/artifact/com.github.javafaker/javafaker)
-[![Build Status](https://travis-ci.org/DiUS/java-faker.svg?branch=master)](https://travis-ci.org/DiUS/java-faker)
 [![Coverage Status](https://coveralls.io/repos/DiUS/java-faker/badge.svg)](https://coveralls.io/r/DiUS/java-faker)
 [![License](http://img.shields.io/:license-apache-brightgreen.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
 This library is a port of Ruby's [faker](https://github.com/stympy/faker) gem (as well as Perl's Data::Faker library) that generates fake data.
 It's useful when you're developing a new project and need some pretty data for showcase.
 
-Usage
------
-In pom.xml, add the following xml stanza between `<dependencies> ... </dependencies>`
+## Usage
+
+### Adding dependency
+
+For maven users add the following to your `pom.xml`:
 
 ```xml
 <dependency>
@@ -21,187 +21,188 @@ In pom.xml, add the following xml stanza between `<dependencies> ... </dependenc
 </dependency>
 ```
 
-For gradle users, add the following to your build.gradle file.
+For gradle users, add one of the following to your `build.gradle` file depending on the style you use:
 
 ```groovy
-dependencies {
-    implementation 'com.github.javafaker:javafaker:1.0.2'
-}
-
+implementation 'com.github.javafaker:javafaker:1.0.2'
 ```
 
-In your Java code
+```groovy
+implementation group: 'com.github.javafaker', name: 'javafaker', version: '1.0.2'
+```
+
+```kotlin
+implementation("com.github.javafaker:javafaker:1.0.2")
+```
+
+### In your Java code
 
 ```java
 Faker faker = new Faker();
-
 String name = faker.name().fullName(); // Miss Samanta Schmidt
 String firstName = faker.name().firstName(); // Emory
 String lastName = faker.name().lastName(); // Barton
-
 String streetAddress = faker.address().streetAddress(); // 60018 Sawayn Brooks Suite 449
 ```
 
 This is a [demo web application](https://java-faker.herokuapp.com/) that uses the library.
 
-Javadoc
------
+## Javadoc
+
 http://dius.github.io/java-faker/apidocs/index.html
 
+## Contributions
 
-Contributions
--------------
-See [CONTRIBUTING.md](https://github.com/DiUS/java-faker/blob/master/CONTRIBUTING.md)
+Contributions are welcome!
 
+See [CONTRIBUTING.md](https://github.com/TheJavaGuy/java-faker/blob/master/CONTRIBUTING.md)
 
-Fakers
------
-* Address
-* Ancient
-* Animal
-* App
-* Aqua Teen Hunger Force
-* Artist
-* Avatar
-* Back To The Future
-* Aviation
-* Basketball
-* Beer
-* Bojack Horseman
-* Book
-* Bool
-* Business
-* ChuckNorris
-* Cat
-* Code
-* Coin
-* Color
-* Commerce
-* Company
-* Crypto
-* DateAndTime
-* Demographic
-* Disease
-* Dog
-* DragonBall
-* Dune
-* Educator
-* Esports
-* EnglandFootBall
-* File
-* Finance
-* Food
-* Friends
-* FunnyName
-* GameOfThrones
-* Gender
-* Hacker
-* HarryPotter
-* Hipster
-* HitchhikersGuideToTheGalaxy
-* Hobbit
-* HowIMetYourMother
-* IdNumber
-* Internet
-* Job
-* Kaamelott
-* LeagueOfLegends
-* Lebowski
-* LordOfTheRings
-* Lorem
-* Matz
-* Music
-* Name
-* Nation
-* Number
-* Options
-* Overwatch
-* PhoneNumber
-* Photography
-* Pokemon
-* Princess Bride
-* Relationship Terms
-* RickAndMorty
-* Robin
-* RockBand
-* Shakespeare
-* Sip
-* SlackEmoji
-* Space
-* StarCraft
-* StarTrek
-* Stock
-* Superhero
-* Team
-* TwinPeaks
-* University
-* Weather
-* Witcher
-* Yoda
-* Zelda
+## Fakers
 
-Usage with Locales
------
+- Address
+- Ancient
+- Animal
+- App
+- Aqua Teen Hunger Force
+- Artist
+- Avatar
+- Back To The Future
+- Aviation
+- Basketball
+- Beer
+- Bojack Horseman
+- Book
+- Bool
+- Business
+- ChuckNorris
+- Cat
+- Code
+- Coin
+- Color
+- Commerce
+- Company
+- Crypto
+- DateAndTime
+- Demographic
+- Disease
+- Dog
+- DragonBall
+- Dune
+- Educator
+- Esports
+- EnglandFootBall
+- File
+- Finance
+- Food
+- Friends
+- FunnyName
+- GameOfThrones
+- Gender
+- Hacker
+- HarryPotter
+- Hipster
+- HitchhikersGuideToTheGalaxy
+- Hobbit
+- HowIMetYourMother
+- IdNumber
+- Internet
+- Job
+- Kaamelott
+- LeagueOfLegends
+- Lebowski
+- LordOfTheRings
+- Lorem
+- Matz
+- Music
+- Name
+- Nation
+- Number
+- Options
+- Overwatch
+- PhoneNumber
+- Photography
+- Pokemon
+- Princess Bride
+- Relationship Terms
+- RickAndMorty
+- Robin
+- RockBand
+- Shakespeare
+- Sip
+- SlackEmoji
+- Space
+- StarCraft
+- StarTrek
+- Stock
+- Superhero
+- Team
+- TwinPeaks
+- University
+- Weather
+- Witcher
+- Yoda
+- Zelda
+
+## Usage with Locales
 
 ```java
 Faker faker = new Faker(new Locale("YOUR_LOCALE"));
 ```
 
-Supported Locales
------
-* bg
-* ca
-* ca-CAT
-* da-DK
-* de
-* de-AT
-* de-CH
-* en
-* en-AU
-* en-au-ocker
-* en-BORK
-* en-CA
-* en-GB
-* en-IND
-* en-MS
-* en-NEP
-* en-NG
-* en-NZ
-* en-PAK
-* en-SG
-* en-UG
-* en-US
-* en-ZA
-* es
-* es-MX
-* fa
-* fi-FI
-* fr
-* he
-* hu
-* in-ID
-* it
-* ja
-* ko
-* nb-NO
-* nl
-* pl
-* pt
-* pt-BR
-* ru
-* sk
-* sv
-* sv-SE
-* tr
-* uk
-* vi
-* zh-CN
-* zh-TW
+## Supported Locales
 
-TODO
-----
-- Port more classes over as there are more entries in the yml file that we don't have classes for
+- bg
+- ca
+- ca-CAT
+- da-DK
+- de
+- de-AT
+- de-CH
+- en
+- en-AU
+- en-au-ocker
+- en-BORK
+- en-CA
+- en-GB
+- en-IND
+- en-MS
+- en-NEP
+- en-NG
+- en-NZ
+- en-PAK
+- en-SG
+- en-UG
+- en-US
+- en-ZA
+- es
+- es-MX
+- fa
+- fi-FI
+- fr
+- he
+- hu
+- in-ID
+- it
+- ja
+- ko
+- nb-NO
+- nl
+- pl
+- pt
+- pt-BR
+- ru
+- sk
+- sv
+- sv-SE
+- tr
+- uk
+- vi
+- zh-CN
+- zh-TW
 
-LICENSE
--------
+## LICENSE
+
+Copyright (c) 2025 TheJavaGuy. See the LICENSE file for license rights and limitations.
+
+For previous work:
 Copyright (c) 2019 DiUS Computing Pty Ltd. See the LICENSE file for license rights and limitations.
