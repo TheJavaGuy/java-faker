@@ -1,13 +1,13 @@
 package com.github.javafaker.service;
 
-import org.yaml.snakeyaml.Yaml;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
+import org.yaml.snakeyaml.Yaml;
 
 public class FakeValues implements FakeValuesInterface {
     private final Locale locale;

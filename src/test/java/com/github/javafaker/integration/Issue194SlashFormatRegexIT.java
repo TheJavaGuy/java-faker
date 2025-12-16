@@ -1,14 +1,14 @@
 package com.github.javafaker.integration;
 
-import com.github.javafaker.Faker;
+import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+import java.util.Locale;
 
 import org.junit.Ignore;
 import org.junit.Test;
 
-import java.util.Locale;
-
-import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.hamcrest.MatcherAssert.assertThat;
+import com.github.javafaker.Faker;
 
 @Ignore
 public class Issue194SlashFormatRegexIT {

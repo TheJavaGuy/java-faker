@@ -1,15 +1,16 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.FakerIDN;
-import com.github.javafaker.service.RandomService;
-import org.apache.commons.lang3.StringUtils;
+import static org.apache.commons.lang3.StringUtils.join;
+import static org.apache.commons.lang3.StringUtils.stripAccents;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
-import static org.apache.commons.lang3.StringUtils.join;
-import static org.apache.commons.lang3.StringUtils.stripAccents;
+import org.apache.commons.lang3.StringUtils;
+
+import com.github.javafaker.service.FakerIDN;
+import com.github.javafaker.service.RandomService;
 
 public class Internet {
     private final Faker faker;
@@ -138,7 +139,7 @@ public class Internet {
             return faker.lorem().characters(minimumLength, maximumLength, includeUppercase, includeDigit);
         }
     }
-    
+
     /**
      * <p>Returns a MAC address in the following format: 6-bytes in MM:MM:MM:SS:SS:SS format.</p>
      * @return a correctly formatted MAC address
@@ -146,10 +147,10 @@ public class Internet {
      */
     public String macAddress(String prefix) {
         final String tmp = (prefix == null) ? "" : prefix;
-        final int prefixLength = tmp.trim().length() == 0 
-          ? 0 
+        final int prefixLength = tmp.trim().length() == 0
+          ? 0
           : tmp.split(":").length;
-        
+
         final StringBuilder out = new StringBuilder(tmp);
         for (int i=0;i < 6 - prefixLength;i++) {
             if (out.length() > 0) {
@@ -162,14 +163,14 @@ public class Internet {
     }
 
     /**
-     * @see Internet#macAddress(String) 
+     * @see Internet#macAddress(String)
      */
     public String macAddress() {
         return macAddress("");
     }
 
     /**
-     * returns an IPv4 address in dot separated octets. 
+     * returns an IPv4 address in dot separated octets.
      * @return a correctly formatted IPv4 address.
      */
     public String ipV4Address() {
@@ -212,14 +213,14 @@ public class Internet {
      */
     public String publicIpV4Address() {
         final RandomService r = faker.random();
-        
+
         final int[] PRIVATE_FIRST_OCTET = {10,127,169,192,172};
 
         int first = r.nextInt(256),
                 second = r.nextInt(256),
                 third = r.nextInt(256),
                 fourth = r.nextInt(256);
-        
+
         while (Arrays.binarySearch(PRIVATE_FIRST_OCTET, first) > 0) {
             first = r.nextInt(256);
         }
@@ -301,7 +302,7 @@ public class Internet {
     public String uuid() {
         return UUID.randomUUID().toString();
     }
-          
+
     private <T> T random(T[] src) {
         return src[faker.random().nextInt(src.length)];
     }
