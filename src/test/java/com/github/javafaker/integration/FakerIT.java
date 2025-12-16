@@ -19,7 +19,7 @@ import java.util.*;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.IsNull.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.reflections.ReflectionUtils.*;
 
 /**
@@ -89,7 +89,7 @@ public class FakerIT {
             dataFromYmlFiles[i][0] = new Locale(StringUtils.substringBefore(ymlFileName, "."));
         }
 
-        List<Object[]> allData = new ArrayList<Object[]>(Arrays.asList(data));
+        List<Object[]> allData = new ArrayList<>(Arrays.asList(data));
         allData.addAll(Arrays.asList(dataFromYmlFiles));
         return allData;
     }

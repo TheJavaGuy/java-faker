@@ -8,7 +8,7 @@ import org.junit.Test;
 import java.util.Locale;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 @Ignore
 public class Issue194SlashFormatRegexIT {
