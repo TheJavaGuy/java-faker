@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class BojackHorsemanTest extends AbstractFakerTest {
 

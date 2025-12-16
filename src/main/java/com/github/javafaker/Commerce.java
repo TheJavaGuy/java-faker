@@ -1,10 +1,10 @@
 package com.github.javafaker;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.text.DecimalFormat;
 import java.util.SortedSet;
 import java.util.TreeSet;
+
+import org.apache.commons.lang3.StringUtils;
 
 public class Commerce {
     private final Faker faker;
@@ -19,7 +19,7 @@ public class Commerce {
 
     public String department() {
         int numberOfDepartments = Math.max(faker.random().nextInt(4), 1);
-        SortedSet<String> departments = new TreeSet<String>();
+        SortedSet<String> departments = new TreeSet<>();
         while (departments.size() < numberOfDepartments) {
             departments.add(faker.fakeValuesService().resolve("commerce.department", this, faker));
         }
@@ -32,8 +32,8 @@ public class Commerce {
     }
 
     public String productName() {
-        return StringUtils.join(new String[] { 
-            faker.fakeValuesService().resolve("commerce.product_name.adjective", this,faker), 
+        return StringUtils.join(new String[] {
+            faker.fakeValuesService().resolve("commerce.product_name.adjective", this,faker),
             faker.fakeValuesService().resolve("commerce.product_name.material", this, faker),
             faker.fakeValuesService().resolve("commerce.product_name.product", this, faker) }, " ");
     }
@@ -43,7 +43,7 @@ public class Commerce {
     }
 
     /**
-     * Generate a random price between 0.00 and 100.00 
+     * Generate a random price between 0.00 and 100.00
      */
     public String price() {
         return price(0, 100);

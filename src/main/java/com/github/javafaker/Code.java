@@ -1,7 +1,8 @@
 package com.github.javafaker;
 
-import org.apache.commons.lang3.ArrayUtils;
 import static org.apache.commons.lang3.math.NumberUtils.toInt;
+
+import org.apache.commons.lang3.ArrayUtils;
 
 /**
  * ISBN Rules : https://en.wikipedia.org/wiki/International_Standard_Book_Number
@@ -74,7 +75,7 @@ public class Code {
     public String isbn10() {
         return isbn10(false);
     }
-    
+
     /**
      * @param separator true if you want separators returned, false otherwise
      * @return a valid ISBN10 number with or without separators (ex. 9604250590, 960-425-059-0)
@@ -185,7 +186,7 @@ public class Code {
         return new String(str);
     }
 
-    private static final String [] REPORTING_BODY_IDENTIFIERS 
+    private static final String [] REPORTING_BODY_IDENTIFIERS
         = {"01", "10", "30", "33", "35", "44", "45", "49", "50", "51", "52", "53", "54", "86", "91", "98", "99"};
 
     public String ean8() {

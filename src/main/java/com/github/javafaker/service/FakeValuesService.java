@@ -1,13 +1,5 @@
 package com.github.javafaker.service;
 
-import com.github.javafaker.Address;
-import com.github.javafaker.Faker;
-import com.github.javafaker.Name;
-import com.github.javafaker.service.files.EnFile;
-import com.mifmif.common.regex.Generex;
-import org.apache.commons.lang3.ClassUtils;
-import org.apache.commons.lang3.StringUtils;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -20,6 +12,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.apache.commons.lang3.ClassUtils;
+import org.apache.commons.lang3.Strings;
+
+import com.github.javafaker.Address;
+import com.github.javafaker.Faker;
+import com.github.javafaker.Name;
+import com.github.javafaker.service.files.EnFile;
+import com.mifmif.common.regex.Generex;
 
 public class FakeValuesService {
 
@@ -93,9 +94,9 @@ public class FakeValuesService {
 
         final Locale normalized = normalizeLocale(from);
 
-        final List<Locale> chain = new ArrayList<Locale>(3);
+        final List<Locale> chain = new ArrayList<>(3);
         chain.add(normalized);
-        if (!"".equals(normalized.getCountry()) && !Locale.ENGLISH.getLanguage().equals(normalized.getLanguage())) {
+        if (!normalized.getCountry().isEmpty() && !Locale.ENGLISH.getLanguage().equals(normalized.getLanguage())) {
             chain.add(new Locale(normalized.getLanguage()));
         }
         chain.add(Locale.ENGLISH); // default
@@ -160,7 +161,7 @@ public class FakeValuesService {
         if (o == null) return defaultIfNull;
         if (o instanceof List) {
             List<String> values = (List<String>) o;
-            if (values.size() == 0) {
+            if (values.isEmpty()) {
                 return defaultIfNull;
             }
             return values.get(randomService.nextInt(values.size()));
@@ -178,7 +179,6 @@ public class FakeValuesService {
      *            dot. E.g. name.first_name
      * @return
      */
-    @SuppressWarnings("unchecked")
     public Object fetchObject(String key) {
         String[] path = key.split("\\.");
 
@@ -188,7 +188,7 @@ public class FakeValuesService {
             for (int p = 0; currentValue != null && p < path.length; p++) {
                 String currentPath = path[p];
                 if (currentValue instanceof Map) {
-                    currentValue = ((Map) currentValue).get(currentPath);
+                    currentValue = ((Map<?,?>) currentValue).get(currentPath);
                 } else  {
                     currentValue = ((FakeValuesInterface) currentValue).get(currentPath);
                 }
@@ -349,7 +349,7 @@ public class FakeValuesService {
             final String directive = matcher.group(1);
             final String arguments = matcher.group(2);
             final Matcher argsMatcher = EXPRESSION_ARGUMENTS_PATTERN.matcher(arguments);
-            List<String> args = new ArrayList<String>();
+            List<String> args = new ArrayList<>();
             while (argsMatcher.find()) {
                 args.add(argsMatcher.group(1));
             }
@@ -361,7 +361,7 @@ public class FakeValuesService {
             }
 
             resolved = resolveExpression(resolved, current, root);
-            result = StringUtils.replaceOnce(result, escapedDirective, resolved);
+            result = Strings.CS.replaceOnce(result, escapedDirective, resolved);
         }
         return result;
     }
@@ -543,7 +543,7 @@ public class FakeValuesService {
      * @throws Exception if unable to coerce
      */
     private List<Object> coerceArguments(Method accessor, List<String> args) {
-        final List<Object> coerced = new ArrayList<Object>();
+        final List<Object> coerced = new ArrayList<>();
         for (int i = 0; i < accessor.getParameterTypes().length; i++) {
 
             Class<?> toType = ClassUtils.primitiveToWrapper(accessor.getParameterTypes()[i]);

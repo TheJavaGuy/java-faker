@@ -1,12 +1,13 @@
 package com.github.javafaker;
 
-import com.github.javafaker.service.FakerIDN;
-import org.apache.commons.lang3.StringUtils;
+import static org.apache.commons.lang3.StringUtils.join;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.apache.commons.lang3.StringUtils.join;
+import org.apache.commons.lang3.StringUtils;
+
+import com.github.javafaker.service.FakerIDN;
 
 public class Company {
 
@@ -35,7 +36,7 @@ public class Company {
     public String buzzword() {
         @SuppressWarnings("unchecked")
         List<List<String>> buzzwordLists = (List<List<String>>) faker.fakeValuesService().fetchObject("company.buzzwords");
-        List<String> buzzwords = new ArrayList<String>();
+        List<String> buzzwords = new ArrayList<>();
         for (List<String> buzzwordList : buzzwordLists) {
             buzzwords.addAll(buzzwordList);
         }
@@ -87,7 +88,7 @@ public class Company {
     }
 
     private String joinSampleOfEachList(List<List<String>> listOfLists, String separator) {
-        List<String> words = new ArrayList<String>();
+        List<String> words = new ArrayList<>();
         for (List<String> list : listOfLists) {
            words.add(list.get(faker.random().nextInt(list.size())));
         }
