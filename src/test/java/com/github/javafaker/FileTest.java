@@ -1,10 +1,11 @@
 package com.github.javafaker;
 
-import com.github.javafaker.repeating.Repeat;
-import org.junit.Test;
-
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.MatcherAssert.assertThat;
+
+import org.junit.Test;
+
+import com.github.javafaker.repeating.Repeat;
 
 public class FileTest extends AbstractFakerTest {
 
@@ -29,7 +30,7 @@ public class FileTest extends AbstractFakerTest {
 
     @Test
     public void testFileNameSpecifyExtension() {
-        assertThat(faker.file().fileName(null, null, "txt", null), 
+        assertThat(faker.file().fileName(null, null, "txt", null),
                 matchesRegularExpression("([a-z\\-_]+)(\\\\|\\/)([a-z\\-_]+)\\.txt"));
     }
 
@@ -41,7 +42,7 @@ public class FileTest extends AbstractFakerTest {
 
     @Test
     public void testFileNameSpecifySeparator() {
-        assertThat(faker.file().fileName(null,null,null,"\\"), 
+        assertThat(faker.file().fileName(null,null,null,"\\"),
                 matchesRegularExpression("([a-z\\-_]+)\\\\([a-z\\-_]+)\\.([a-z0-9]+)"));
     }
 

@@ -39,7 +39,7 @@ public class Disease {
     }
 
     /**
-     * Generate random paediattics disease
+     * Generate random paediatrics disease
      * @return A paediatrics disease
      */
     public String paediatrics() {

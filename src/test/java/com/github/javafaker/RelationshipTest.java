@@ -1,15 +1,15 @@
 package com.github.javafaker;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.isEmptyOrNullString;
 import static org.hamcrest.core.IsNot.not;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.when;
+
+import java.lang.reflect.InvocationTargetException;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-
-import java.lang.reflect.InvocationTargetException;
 
 public class RelationshipTest extends AbstractFakerTest {
 

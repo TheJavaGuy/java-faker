@@ -20,11 +20,7 @@ public class PhoneNumber {
     }
 
     public String subscriberNumber(int length) {
-        StringBuilder subscriberNumber = new StringBuilder();
-        for (int i = 0; i < length; i++) {
-            subscriberNumber.append("#");
-        }
-        return faker.numerify(subscriberNumber.toString());
+        return faker.numerify("#".repeat(Math.max(0, length)));
     }
 
     public String subscriberNumber() {

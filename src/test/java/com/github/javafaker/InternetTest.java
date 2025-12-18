@@ -1,20 +1,31 @@
 package com.github.javafaker;
 
-import com.github.javafaker.repeating.Repeat;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
-import org.apache.commons.validator.routines.EmailValidator;
-import org.hamcrest.Matchers;
-import org.junit.Test;
+import static com.github.javafaker.matchers.CountOfCharactersMatcher.countOf;
+import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static java.lang.Integer.parseInt;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.anyOf;
+import static org.hamcrest.Matchers.both;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.isEmptyOrNullString;
+import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.lessThanOrEqualTo;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.startsWith;
 
 import java.util.List;
 import java.util.Locale;
 
-import static com.github.javafaker.matchers.CountOfCharactersMatcher.countOf;
-import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static java.lang.Integer.parseInt;
-import static org.hamcrest.Matchers.*;
-import static org.hamcrest.MatcherAssert.assertThat;
+import org.apache.commons.validator.routines.EmailValidator;
+import org.hamcrest.Matchers;
+import org.junit.Test;
+
+import com.github.javafaker.repeating.Repeat;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 
 public class InternetTest extends AbstractFakerTest {
 
@@ -186,7 +197,7 @@ public class InternetTest extends AbstractFakerTest {
     public void testIpV4Cidr() {
         assertThat(faker.internet().ipV4Cidr(), countOf('.', is(3)));
         assertThat(faker.internet().ipV4Cidr(), countOf('/', is(1)));
-        
+
         for (int i = 0; i < 1000; i++) {
             assertThat(parseInt(faker.internet().ipV4Cidr().split("/")[1]),
                     both(greaterThanOrEqualTo(1)).and(lessThan(32)));
@@ -201,7 +212,7 @@ public class InternetTest extends AbstractFakerTest {
         String oneNineTwo = "^192\\.168\\..+";
         String oneSevenTwo = "^172\\.(16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31)\\..+";
 
-        
+
         for (int i = 0; i < 1000; i++) {
             String addr = faker.internet().privateIpV4Address();
             assertThat(addr, anyOf(matchesRegularExpression(tenDot),
@@ -232,7 +243,7 @@ public class InternetTest extends AbstractFakerTest {
     @Test
     public void testIpV6() {
         assertThat(faker.internet().ipV6Address(), countOf(':', is(7)));
-        
+
         for (int i = 0; i < 1000; i++) {
             assertThat(
                     "Is valid ipv6 format",

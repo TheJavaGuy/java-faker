@@ -1,16 +1,20 @@
 package com.github.javafaker;
 
-import com.github.javafaker.repeating.Repeat;
+import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
+
+import java.util.Locale;
+
 import org.apache.commons.validator.routines.ISBNValidator;
 import org.apache.commons.validator.routines.checkdigit.EAN13CheckDigit;
 import org.apache.commons.validator.routines.checkdigit.LuhnCheckDigit;
 import org.junit.Test;
 
-import java.util.Locale;
-
-import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.hamcrest.Matchers.*;
-import static org.hamcrest.MatcherAssert.assertThat;
+import com.github.javafaker.repeating.Repeat;
 
 public class CodeTest extends AbstractFakerTest {
 
@@ -80,12 +84,12 @@ public class CodeTest extends AbstractFakerTest {
         final String isbn10Sep = faker.code().isbn10(true);
         final String isbn13Sep = faker.code().isbn13(true);
 
-        assertThat("Uses overridden expressions from test.yml", 
-                isbn10Sep, 
-                matchesRegularExpression("9971-\\d-\\d{4}-(\\d|X)"));
-        
         assertThat("Uses overridden expressions from test.yml",
-                isbn13Sep, 
+                isbn10Sep,
+                matchesRegularExpression("9971-\\d-\\d{4}-(\\d|X)"));
+
+        assertThat("Uses overridden expressions from test.yml",
+                isbn13Sep,
                 matchesRegularExpression("(333|444)-9971-\\d-\\d{4}-\\d"));
     }
 

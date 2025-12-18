@@ -8,9 +8,9 @@ import com.github.javafaker.Faker;
 
 /**
  * Implementation based on the definition at
- * https://www.skatteverket.se/privat/folkbokforing/personnummer.4.3810a01c150939e893f18c29.html
+ * <a href="https://www.skatteverket.se/privat/folkbokforing/personnummer.4.3810a01c150939e893f18c29.html">...</a>
  * and the description at
- * https://en.wikipedia.org/wiki/Personal_identity_number_(Sweden)
+ * <a href="https://en.wikipedia.org/wiki/Personal_identity_number_(Sweden)">...</a>
  */
 public class SvSEIdNumber {
     private static final String[] validPatterns = {"######-####", "######+####"};

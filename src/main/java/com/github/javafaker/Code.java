@@ -119,7 +119,7 @@ public class Code {
         return separator ? isbn13.toString() : stripIsbnSeparator(isbn13);
     }
 
-    private final int isbn10CheckDigit(CharSequence t) {
+    private int isbn10CheckDigit(CharSequence t) {
         String value = stripIsbnSeparator(t);
         int sum = 0;
         for (int i = 0; i < value.length(); i++) {
@@ -128,7 +128,7 @@ public class Code {
         return sum % 11;
     }
 
-    private final int isbn13CheckDigit(CharSequence t) {
+    private int isbn13CheckDigit(CharSequence t) {
         String value = stripIsbnSeparator(t);
         int sum = 0;
         int multiplier = 0;
@@ -140,7 +140,7 @@ public class Code {
         return (10 - sum % 10) % 10;
     }
 
-    private final String stripIsbnSeparator(CharSequence t) {
+    private String stripIsbnSeparator(CharSequence t) {
         return t.toString().replaceAll("-","");
     }
 

@@ -2,7 +2,7 @@ package com.github.javafaker;
 
 public class Barcode {
 
-    private Faker faker;
+    private final Faker faker;
 
     public Barcode(Faker faker) {
         this.faker = faker;

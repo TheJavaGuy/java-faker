@@ -147,7 +147,7 @@ public class Internet {
      */
     public String macAddress(String prefix) {
         final String tmp = (prefix == null) ? "" : prefix;
-        final int prefixLength = tmp.trim().length() == 0
+        final int prefixLength = tmp.trim().isEmpty()
           ? 0
           : tmp.split(":").length;
 
