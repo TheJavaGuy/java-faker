@@ -11,7 +11,7 @@ public class FakerIDN {
      * he.yml as they're Bidi languages and something was causing them to die.  This is kind of a brute force
      * fix but it appears to fix the issue.
      */
-    public static final String toASCII(String in) {
+    public static String toASCII(String in) {
         try {
             return IDN.toASCII(in);
         } catch (Exception e) {

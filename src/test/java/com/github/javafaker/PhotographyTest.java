@@ -1,11 +1,12 @@
 package com.github.javafaker;
 
-import com.github.javafaker.repeating.Repeat;
+import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.*;
+
 import org.junit.Test;
 
-import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.junit.Assert.*;
-import static org.hamcrest.MatcherAssert.assertThat;
+import com.github.javafaker.repeating.Repeat;
 
 public class PhotographyTest extends AbstractFakerTest{
 
@@ -65,7 +66,7 @@ public class PhotographyTest extends AbstractFakerTest{
         assertThat(value, matchesRegularExpression("\\d{1,}"));
     }
 
-    private void assertNonNullOrEmpty(String value) {
+    private static void assertNonNullOrEmpty(String value) {
         assertNotNull(value);
         assertFalse(value.isEmpty());
     }

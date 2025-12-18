@@ -1,14 +1,15 @@
 package com.github.javafaker;
 
-import com.github.javafaker.repeating.Repeat;
-import org.junit.Test;
-
 import static com.github.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNot.not;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
+
+import org.junit.Test;
+
+import com.github.javafaker.repeating.Repeat;
 
 
 public class NameTest  extends AbstractFakerTest{
@@ -74,7 +75,7 @@ public class NameTest  extends AbstractFakerTest{
         doReturn(name).when(faker).name();
         assertThat(faker.name().username(), matchesRegularExpression("^(\\w+)\\.(\\w+)$"));
     }
-    
+
     @Test
     public void testBloodGroup() {
         assertThat(faker.name().bloodGroup(), matchesRegularExpression("(A|B|AB|O)[+-]"));

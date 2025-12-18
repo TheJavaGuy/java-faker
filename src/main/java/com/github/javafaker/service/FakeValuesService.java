@@ -539,8 +539,7 @@ public class FakeValuesService {
      * Coerce arguments in <em>args</em> into the appropriate types (if possible) for the parameter arguments
      * to <em>accessor</em>.
      *
-     * @return array of coerced values if successful, null otherwise
-     * @throws Exception if unable to coerce
+     * @return list of coerced values if successful, null otherwise
      */
     private List<Object> coerceArguments(Method accessor, List<String> args) {
         final List<Object> coerced = new ArrayList<>();

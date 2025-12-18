@@ -74,7 +74,7 @@ public class Finance {
         int sum = 0;
         for (String s : string) {
             if (!s.isEmpty()) {
-                sum += Integer.valueOf(s);
+                sum += Integer.parseInt(s);
             }
         }
         return sum;
