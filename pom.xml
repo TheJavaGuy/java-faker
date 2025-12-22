@@ -4,7 +4,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
 >
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.github.javafaker</groupId>
+    <groupId>org.thejavaguy.javafaker</groupId>
     <artifactId>javafaker</artifactId>
     <packaging>jar</packaging>
     <version>1.0.3-SNAPSHOT</version>
@@ -13,7 +13,7 @@
         This library is a port of Ruby's stympy/faker gem (as well as Perl's Data::Faker library) that generates fake data.
         It's useful when you're developing a new project and need some pretty data for showcase.
     </description>
-    <url>http://github.com/DiUS/java-faker</url>
+    <url>https://github.com/TheJavaGuy/java-faker</url>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
