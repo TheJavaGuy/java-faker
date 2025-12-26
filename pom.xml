@@ -74,6 +74,7 @@
             <artifactId>generex</artifactId>
             <version>1.0.2</version>
         </dependency>
+        <!-- test dependencies -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -147,9 +148,9 @@
                     <version>3.14.1</version>
                     <configuration>
                         <release>11</release>
+                        <debug>false</debug>
                         <compilerArgs>
-                            <arg>-Xlint:deprecation</arg>
-                            <arg>-Xlint:unchecked</arg>
+                            <arg>-Xlint:all</arg>
                         </compilerArgs>
                     </configuration>
                 </plugin>
