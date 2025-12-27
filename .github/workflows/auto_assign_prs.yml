@@ -1,16 +1,19 @@
-name: PR assignment
+name: PR and Issue assignment
 
 on:
   pull_request:
     types: [opened, edited, synchronize, reopened]
+  issues:
+    types: [opened, edited, reopened]
 
 jobs:
   auto-assign:
     runs-on: ubuntu-latest
     permissions:
+      issues: write
       pull-requests: write
     steps:
-      - name: 'Auto-assign PR'
+      - name: 'Auto-assign PR or Issue'
         uses: pozil/auto-assign-issue@v2.2.0
         with:
           assignees: TheJavaGuy
