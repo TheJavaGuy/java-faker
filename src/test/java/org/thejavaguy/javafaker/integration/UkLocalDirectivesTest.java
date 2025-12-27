@@ -6,10 +6,10 @@ import static org.hamcrest.Matchers.is;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import org.junit.Ignore;
-import org.junit.Test;
-
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.thejavaguy.javafaker.Faker;
+
 import com.google.common.collect.Lists;
 
 /**
@@ -17,7 +17,7 @@ import com.google.common.collect.Lists;
  * and that methods return values. The unit tests should ensure what the values returned
  * are correct. These tests just ensure that the methods can be invoked.
  */
-@Ignore
+@Disabled
 public class UkLocalDirectivesTest {
 
     /**

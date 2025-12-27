@@ -1,29 +1,30 @@
 package org.thejavaguy.javafaker;
 
-import static org.thejavaguy.javafaker.matchers.CountOfCharactersMatcher.countOf;
-import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static java.lang.Integer.parseInt;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.both;
+import static org.hamcrest.Matchers.emptyOrNullString;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.isEmptyOrNullString;
 import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.startsWith;
+import static org.thejavaguy.javafaker.matchers.CountOfCharactersMatcher.countOf;
+import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 
 import java.util.List;
 import java.util.Locale;
 
 import org.apache.commons.validator.routines.EmailValidator;
 import org.hamcrest.Matchers;
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestTemplate;
 import org.thejavaguy.javafaker.repeating.Repeat;
+
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
@@ -263,45 +264,45 @@ public class InternetTest extends AbstractFakerTest {
         }
     }
 
-    @Test
+    @TestTemplate
     @Repeat(times=10)
     public void testSlugWithParams() {
         assertThat(faker.internet().slug(ImmutableList.of("a", "b"), "-"), matchesRegularExpression("[a-zA-Z]+\\-[a-zA-Z]+"));
     }
 
-    @Test
+    @TestTemplate
     @Repeat(times=10)
     public void testSlug() {
         assertThat(faker.internet().slug(), matchesRegularExpression("[a-zA-Z]+\\_[a-zA-Z]+"));
     }
 
-    @Test
+    @TestTemplate
     @Repeat(times=10)
     public void testUuid() {
         assertThat(faker.internet().uuid(), matchesRegularExpression("^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"));
     }
 
-    @Test
+    @TestTemplate
     @Repeat(times=100)
     public void testFarsiIDNs() {
         // in this case, we're just making sure Farsi doesn't blow up.
         // there have been issues with Farsi not being produced.
         final Faker f = new Faker(new Locale("fa"));
-        assertThat(f.internet().domainName(), not(isEmptyOrNullString()));
-        assertThat(f.internet().emailAddress(), not(isEmptyOrNullString()));
-        assertThat(f.internet().safeEmailAddress(), not(isEmptyOrNullString()));
-        assertThat(f.internet().url(), not(isEmptyOrNullString()));
+        assertThat(f.internet().domainName(), is(not(emptyOrNullString())));
+        assertThat(f.internet().emailAddress(), is(not(emptyOrNullString())));
+        assertThat(f.internet().safeEmailAddress(), is(not(emptyOrNullString())));
+        assertThat(f.internet().url(), is(not(emptyOrNullString())));
     }
 
     @Test
     public void testUserAgent() {
         Internet.UserAgent[] agents = Internet.UserAgent.values();
         for(Internet.UserAgent agent : agents) {
-            assertThat(faker.internet().userAgent(agent), not(isEmptyOrNullString()));
+            assertThat(faker.internet().userAgent(agent), is(not(emptyOrNullString())));
         }
 
         //Test faker.internet().userAgentAny() for random user_agent retrieval.
-        assertThat(faker.internet().userAgentAny(), not(isEmptyOrNullString()));
+        assertThat(faker.internet().userAgentAny(), is(not(emptyOrNullString())));
     }
 
     @Test

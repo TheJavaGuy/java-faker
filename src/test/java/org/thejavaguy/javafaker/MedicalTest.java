@@ -1,9 +1,9 @@
 package org.thejavaguy.javafaker;
 
-import static org.thejavaguy.javafaker.matchers.IsStringWithContents.isStringWithContents;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.thejavaguy.javafaker.matchers.IsStringWithContents.isStringWithContents;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MedicalTest extends AbstractFakerTest {
 

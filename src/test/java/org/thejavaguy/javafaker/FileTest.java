@@ -1,28 +1,28 @@
 package org.thejavaguy.javafaker;
 
-import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestTemplate;
 import org.thejavaguy.javafaker.repeating.Repeat;
 
 public class FileTest extends AbstractFakerTest {
 
-    @Test
+    @TestTemplate
     @Repeat(times=10)
     public void testExtension() {
         assertThat(faker.file().extension(),
                 matchesRegularExpression("(flac|mp3|wav|bmp|gif|jpeg|jpg|png|tiff|css|csv|html|js|json|txt|mp4|avi|mov|webm|doc|docx|xls|xlsx|ppt|pptx|odt|ods|odp|pages|numbers|key|pdf)"));
     }
 
-    @Test
+    @TestTemplate
     @Repeat(times=10)
     public void testMimeTypeFormat() {
         assertThat(faker.file().mimeType(), matchesRegularExpression(".+\\/.+"));
     }
 
-    @Test
+    @TestTemplate
     @Repeat(times=10)
     public void testFileName() {
         assertThat(faker.file().fileName(), matchesRegularExpression("([a-z\\-_]+)(\\\\|\\/)([a-z\\-_]+)\\.([a-z0-9]+)"));

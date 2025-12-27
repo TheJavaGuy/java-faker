@@ -5,24 +5,24 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-import org.junit.Before;
-import org.junit.Rule;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
-
 import org.thejavaguy.javafaker.repeating.RepeatRule;
 
+@ExtendWith(RepeatRule.class)
 public class AbstractFakerTest {
-
-    @Rule
-    public RepeatRule repeatRule = new RepeatRule();
 
     @Spy
     protected Faker faker;
 
-    @Before
+    private AutoCloseable closeable;
+
+    @BeforeEach
     public void before() {
-        MockitoAnnotations.initMocks(this);
+        closeable = MockitoAnnotations.openMocks(this);
 
         Logger rootLogger = LogManager.getLogManager().getLogger("");
         Handler[] handlers = rootLogger.getHandlers();
@@ -32,4 +32,8 @@ public class AbstractFakerTest {
         }
     }
 
+    @AfterEach
+    void closeMocks() throws Exception{
+        closeable.close();
+    }
 }

@@ -1,10 +1,11 @@
 package org.thejavaguy.javafaker;
 
-import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class BojackHorsemanTest extends AbstractFakerTest {
 
