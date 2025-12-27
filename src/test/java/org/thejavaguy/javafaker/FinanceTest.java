@@ -1,11 +1,11 @@
 package org.thejavaguy.javafaker;
 
-import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 
 import org.apache.commons.validator.routines.checkdigit.LuhnCheckDigit;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class FinanceTest extends AbstractFakerTest {
 

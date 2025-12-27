@@ -3,14 +3,14 @@ package org.thejavaguy.javafaker.matchers;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class IsStringWithContentsTest {
 
     private IsStringWithContents matcher;
 
-    @Before
+    @BeforeEach
     public void before() {
         matcher = new IsStringWithContents();
     }

@@ -1,12 +1,12 @@
 package org.thejavaguy.javafaker;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.thejavaguy.javafaker.matchers.IsStringWithContents.isStringWithContents;
 import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.*;
 
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestTemplate;
 import org.thejavaguy.javafaker.repeating.Repeat;
 
 public class DiseaseTest extends AbstractFakerTest {
@@ -66,42 +66,42 @@ public class DiseaseTest extends AbstractFakerTest {
         assertTrue(isExist);
     }
 
-    @Test
+    @TestTemplate
     @Repeat(times = 10000)
     public void testNeurologyWith10000Times() {
         Faker faker = new Faker();
         assertThat(faker.disease().neurology(), isStringWithContents());
     }
 
-    @Test
+    @TestTemplate
     @Repeat(times = 10000)
     public void testSurgeryWith10000Times() {
         Faker faker = new Faker();
         assertThat(faker.disease().surgery(), isStringWithContents());
     }
 
-    @Test
+    @TestTemplate
     @Repeat(times = 10000)
     public void testPaediatricsWith10000Times() {
         Faker faker = new Faker();
         assertThat(faker.disease().paediatrics(), isStringWithContents());
     }
 
-    @Test
+    @TestTemplate
     @Repeat(times = 10000)
     public void testGynecologyAndObstetricsWith10000Times() {
         Faker faker = new Faker();
         assertThat(faker.disease().gynecologyAndObstetrics(), isStringWithContents());
     }
 
-    @Test
+    @TestTemplate
     @Repeat(times = 10000)
     public void testOphthalmologyAndOtorhinolaryngologyWith10000Times() {
         Faker faker = new Faker();
         assertThat(faker.disease().ophthalmologyAndOtorhinolaryngology(), isStringWithContents());
     }
 
-    @Test
+    @TestTemplate
     @Repeat(times = 10000)
     public void testDermatoloryWith10000Times() {
         Faker faker = new Faker();

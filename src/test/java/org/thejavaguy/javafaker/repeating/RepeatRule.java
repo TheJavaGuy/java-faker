@@ -1,40 +1,48 @@
 package org.thejavaguy.javafaker.repeating;
 
-import org.junit.rules.TestRule;
-import org.junit.runner.Description;
-import org.junit.runners.model.Statement;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.api.extension.TestTemplateInvocationContext;
+import org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider;
 
 /**
- * Pulled from https://gist.github.com/fappel/8bcb2aea4b39ff9cfb6e
+ * JUnit 5 extension that provides repeated test execution based on the @Repeat annotation.
+ * Migrated from JUnit 4 TestRule to JUnit 5 TestTemplateInvocationContextProvider.
  */
-public class RepeatRule implements TestRule {
+public class RepeatRule implements TestTemplateInvocationContextProvider {
 
-    private static class RepeatStatement extends Statement {
-
-    private final int times;
-    private final Statement statement;
-
-    private RepeatStatement( int times, Statement statement ) {
-      this.times = times;
-      this.statement = statement;
+    @Override
+    public boolean supportsTestTemplate(ExtensionContext context) {
+        return context.getTestMethod()
+                .map(method -> method.isAnnotationPresent(Repeat.class))
+                .orElse(false);
     }
 
     @Override
-    public void evaluate() throws Throwable {
-      for( int i = 0; i < times; i++ ) {
-        statement.evaluate();
-      }
-    }
-  }
+    public Stream<TestTemplateInvocationContext> provideTestTemplateInvocationContexts(ExtensionContext context) {
+        int times = context.getTestMethod()
+                .map(method -> method.getAnnotation(Repeat.class))
+                .map(Repeat::times)
+                .orElse(1);
 
-  @Override
-  public Statement apply( Statement statement, Description description ) {
-    Statement result = statement;
-    Repeat repeat = description.getAnnotation( Repeat.class );
-    if( repeat != null ) {
-      int times = repeat.times();
-      result = new RepeatStatement( times, statement );
+        return IntStream.rangeClosed(1, times)
+                .mapToObj(i -> new RepeatInvocationContext(i, times));
     }
-    return result;
-  }
+
+    private static class RepeatInvocationContext implements TestTemplateInvocationContext {
+        private final int currentRepetition;
+        private final int totalRepetitions;
+
+        RepeatInvocationContext(int currentRepetition, int totalRepetitions) {
+            this.currentRepetition = currentRepetition;
+            this.totalRepetitions = totalRepetitions;
+        }
+
+        @Override
+        public String getDisplayName(int invocationIndex) {
+            return "repetition " + currentRepetition + " of " + totalRepetitions;
+        }
+    }
 }

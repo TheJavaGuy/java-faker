@@ -6,15 +6,15 @@ import static org.hamcrest.Matchers.notNullValue;
 
 import java.util.Locale;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class FakeValuesGroupingTest {
 
     private FakeValuesGrouping fakeValuesGrouping;
     private FakeValues addressValues;
 
-    @Before
+    @BeforeEach
     public void before() {
         fakeValuesGrouping = new FakeValuesGrouping();
         addressValues = new FakeValues(Locale.ENGLISH, "address.yml", "address");

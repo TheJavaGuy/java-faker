@@ -1,6 +1,5 @@
 package org.thejavaguy.javafaker;
 
-import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.equalTo;
@@ -9,6 +8,7 @@ import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
+import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -17,11 +17,12 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.apache.commons.lang3.tuple.Pair;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.thejavaguy.javafaker.repeating.Repeat;
+
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -129,7 +130,7 @@ public class NumberTest extends AbstractFakerTest {
         assertThat(v1, is(lessThan(980000000L)));
     }
 
-    @Test
+    @TestTemplate
     @Repeat(times = 100)
     public void testLongNumberBetweenRepeated() {
         long low = 1;
@@ -139,7 +140,7 @@ public class NumberTest extends AbstractFakerTest {
         assertThat(v, is(greaterThanOrEqualTo(low)));
     }
 
-    @Test
+    @TestTemplate
     @Repeat(times = 100)
     public void testIntNumberBetweenRepeated() {
         int low = 1;

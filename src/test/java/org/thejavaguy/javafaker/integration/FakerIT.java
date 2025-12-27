@@ -2,12 +2,12 @@ package org.thejavaguy.javafaker.integration;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.emptyOrNullString;
 import static org.hamcrest.Matchers.endsWith;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.isEmptyOrNullString;
+import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.startsWith;
-import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.reflections.ReflectionUtils.getAllMethods;
 import static org.reflections.ReflectionUtils.withModifier;
@@ -27,14 +27,13 @@ import java.util.Random;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.thejavaguy.javafaker.Faker;
+
 import com.google.common.collect.Maps;
 
 /**
@@ -42,13 +41,12 @@ import com.google.common.collect.Maps;
  * and that methods return values. The unit tests should ensure what the values returned
  * are correct. These tests just ensure that the methods can be invoked.
  */
-@Ignore
-@RunWith(value = Parameterized.class)
+@Disabled
 public class FakerIT {
 
     private static final Logger logger = LoggerFactory.getLogger(FakerIT.class);
-    private final Locale locale;
-    private final Faker faker;
+    private Locale locale;
+    private Faker faker;
 
     /**
      * a collection of Locales -> Exceptions.
@@ -71,7 +69,7 @@ public class FakerIT {
         exceptions.put(new Locale("pt","Br", "x2"), Arrays.asList("Address.cityPrefix", "Address.citySuffix"));
     }
 
-    public FakerIT(Locale locale, Random random) {
+    public void initFakerIT(Locale locale, Random random) {
         this.locale = locale;
         if (locale != null && random != null) {
             faker = new Faker(locale, random);
@@ -84,7 +82,6 @@ public class FakerIT {
         }
     }
 
-    @Parameterized.Parameters(name = "testing locale {0} and random {1}")
     public static Collection<Object[]> data() {
         Object[][] data = new Object[][]{
                 {Locale.ENGLISH, new Random()},
@@ -109,8 +106,10 @@ public class FakerIT {
         return allData;
     }
 
-    @Test
-    public void testAllFakerMethodsThatReturnStrings() throws Exception {
+    @MethodSource("data")
+    @ParameterizedTest(name = "testing locale {0} and random {1}")
+    public void testAllFakerMethodsThatReturnStrings(Locale locale,Random random) throws Exception {
+        initFakerIT(locale, random);
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker);
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.ancient());
         testAllMethodsThatReturnStringsActuallyReturnStrings(faker.address());
@@ -211,7 +210,7 @@ public class FakerIT {
             String failureReason = method + " on " + object;
             assertThat(failureReason, returnValue, is(instanceOf(String.class)));
             final String returnValueAsString = (String) returnValue;
-            assertThat(failureReason, returnValueAsString, not(isEmptyOrNullString()));
+            assertThat(failureReason, returnValueAsString, is(not(emptyOrNullString())));
             assertThat(failureReason + " is a slash encoded regex", returnValueAsString,
                        not(allOf(startsWith("/"), endsWith("/"))));
         }
@@ -223,8 +222,10 @@ public class FakerIT {
         return classDotMethod.contains(object.getClass().getSimpleName() + "." + method.getName());
     }
 
-    @Test
-    public void testExceptionsNotCoveredInAboveTest() {
+    @MethodSource("data")
+    @ParameterizedTest(name = "testing locale {0} and random {1}")
+    public void testExceptionsNotCoveredInAboveTest(Locale locale,Random random) {
+        initFakerIT(locale, random);
         assertThat(faker.bothify("####???"), is(notNullValue()));
         assertThat(faker.letterify("????"), is(notNullValue()));
         assertThat(faker.numerify("####"), is(notNullValue()));

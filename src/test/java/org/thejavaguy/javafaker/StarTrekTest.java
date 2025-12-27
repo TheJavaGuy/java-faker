@@ -1,11 +1,12 @@
 package org.thejavaguy.javafaker;
 
-import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.isEmptyOrNullString;
+import static org.hamcrest.Matchers.emptyOrNullString;
+import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
+import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class StarTrekTest extends AbstractFakerTest {
 
@@ -30,5 +31,5 @@ public class StarTrekTest extends AbstractFakerTest {
     }
 
     @Test
-    public void klingon() { assertThat(faker.starTrek().klingon(), not(isEmptyOrNullString())); }
+    public void klingon() { assertThat(faker.starTrek().klingon(), is(not(emptyOrNullString()))); }
 }

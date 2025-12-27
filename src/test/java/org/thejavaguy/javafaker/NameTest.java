@@ -1,14 +1,14 @@
 package org.thejavaguy.javafaker;
 
-import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNot.not;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
+import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestTemplate;
 import org.thejavaguy.javafaker.repeating.Repeat;
 
 
@@ -24,7 +24,7 @@ public class NameTest  extends AbstractFakerTest{
         assertThat(faker.name().nameWithMiddle(), matchesRegularExpression("([\\w']+\\.?( )?){3,4}"));
     }
 
-    @Test @Repeat(times = 10)
+    @TestTemplate @Repeat(times = 10)
     public void testNameWithMiddleDoesNotHaveRepeatedName() {
         String nameWithMiddle = faker.name().nameWithMiddle();
         String[] splitNames = nameWithMiddle.split(" ");

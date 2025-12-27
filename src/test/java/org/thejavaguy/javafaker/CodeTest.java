@@ -1,26 +1,26 @@
 package org.thejavaguy.javafaker;
 
-import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
+import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 
 import java.util.Locale;
 
 import org.apache.commons.validator.routines.ISBNValidator;
 import org.apache.commons.validator.routines.checkdigit.EAN13CheckDigit;
 import org.apache.commons.validator.routines.checkdigit.LuhnCheckDigit;
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestTemplate;
 import org.thejavaguy.javafaker.repeating.Repeat;
 
 public class CodeTest extends AbstractFakerTest {
 
     private static final ISBNValidator ISBN_VALIDATOR = ISBNValidator.getInstance(false);
 
-    @Test
+    @TestTemplate
     @Repeat(times = 1000)
     public void isbn10DefaultIsNoSeparator() {
         String isbn10 = faker.code().isbn10();
@@ -29,7 +29,7 @@ public class CodeTest extends AbstractFakerTest {
         assertThat(isbn10, not(containsString("-")));
     }
 
-    @Test
+    @TestTemplate
     @Repeat(times = 1000)
     public void isbn13DefaultIsNoSeparator() {
         String isbn13 = faker.code().isbn13();
@@ -38,7 +38,7 @@ public class CodeTest extends AbstractFakerTest {
         assertThat(isbn13, not(containsString("-")));
     }
 
-    @Test
+    @TestTemplate
     @Repeat(times = 1000)
     public void testIsbn10() {
         final String isbn10NoSep = faker.code().isbn10(false);
@@ -53,7 +53,7 @@ public class CodeTest extends AbstractFakerTest {
         assertIsValidISBN10(isbn10Sep);
     }
 
-    @Test
+    @TestTemplate
     @Repeat(times = 1000)
     public void testIsbn13() {
         final String isbn13NoSep = faker.code().isbn13(false);
@@ -76,7 +76,7 @@ public class CodeTest extends AbstractFakerTest {
         assertThat(isbn13 + " is valid", ISBN_VALIDATOR.isValidISBN13(isbn13), is(true));
     }
 
-    @Test
+    @TestTemplate
     @Repeat(times = 100)
     public void testOverrides() {
         Faker faker = new Faker(new Locale("test"));

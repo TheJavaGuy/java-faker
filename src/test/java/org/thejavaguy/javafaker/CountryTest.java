@@ -1,16 +1,16 @@
 package org.thejavaguy.javafaker;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.thejavaguy.javafaker.matchers.IsStringWithContents.isStringWithContents;
 import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.hamcrest.MatcherAssert.assertThat;
 
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestTemplate;
 import org.thejavaguy.javafaker.repeating.Repeat;
 
 public class CountryTest extends AbstractFakerTest {
 
-    @Test
+    @TestTemplate
     @Repeat(times=10)
     public void testFlag() {
         String flag = faker.country().flag();

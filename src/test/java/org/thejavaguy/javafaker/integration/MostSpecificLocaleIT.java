@@ -8,10 +8,9 @@ import static org.hamcrest.Matchers.not;
 import java.util.List;
 import java.util.Locale;
 
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.thejavaguy.javafaker.service.FakeValuesService;
 
 /**
@@ -19,13 +18,13 @@ import org.thejavaguy.javafaker.service.FakeValuesService;
  * and that methods return values. The unit tests should ensure what the values returned
  * are correct. These tests just ensure that the methods can be invoked.
  */
-@Ignore
+@Disabled
 public class MostSpecificLocaleIT {
 
     private FakeValuesService en;
     private FakeValuesService en_US;
 
-    @Before
+    @BeforeEach
     public void setupFakers() {
         en = new FakeValuesService(new Locale("en"), null);
         en_US = new FakeValuesService(new Locale("en","US"), null);

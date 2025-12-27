@@ -1,21 +1,21 @@
 package org.thejavaguy.javafaker.service;
 
-import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.emptyString;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.isEmptyString;
-import static org.hamcrest.Matchers.isOneOf;
 import static org.hamcrest.Matchers.lessThan;
-import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.oneOf;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
+import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,12 +25,12 @@ import java.util.List;
 import java.util.Locale;
 
 import org.hamcrest.core.Is;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-
 import org.thejavaguy.javafaker.AbstractFakerTest;
 import org.thejavaguy.javafaker.Faker;
 import org.thejavaguy.javafaker.Superhero;
@@ -44,16 +44,22 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
     private RandomService randomService;
 
     private FakeValuesService fakeValuesService;
+    private AutoCloseable closeable;
 
-    @Before
+    @BeforeEach
     public void before() {
         super.before();
-        MockitoAnnotations.initMocks(this);
+        closeable = MockitoAnnotations.openMocks(this);
 
         // always return the first element
         when(randomService.nextInt(anyInt())).thenReturn(0);
 
         fakeValuesService = spy(new FakeValuesService(new Locale("test"), randomService));
+    }
+
+    @AfterEach
+    void closeMocks() throws Exception{
+        closeable.close();
     }
 
     @Test
@@ -84,7 +90,7 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
 
     @Test
     public void safeFetchShouldReturnEmptyStringWhenPropertyDoesntExist() {
-        assertThat(fakeValuesService.safeFetch("property.dummy2", ""), isEmptyString());
+        assertThat(fakeValuesService.safeFetch("property.dummy2", ""), is(emptyString()));
     }
 
     @Test
@@ -102,7 +108,7 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
         final DummyService dummy = mock(DummyService.class);
 
         String value = fakeValuesService.resolve("property.regexify1", dummy, faker);
-        assertThat(value, isOneOf("55", "44", "45", "54"));
+        assertThat(value, is(oneOf("55", "44", "45", "54")));
         verify(faker).regexify("[45]{2}");
     }
 
@@ -111,7 +117,7 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
         final DummyService dummy = mock(DummyService.class);
 
         String value = fakeValuesService.resolve("property.regexify_slash_format", dummy, faker);
-        assertThat(value, isOneOf("55", "44", "45", "54"));
+        assertThat(value, is(oneOf("55", "44", "45", "54")));
         verify(faker).regexify("[45]{2}");
     }
 
@@ -120,7 +126,7 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
         final DummyService dummy = mock(DummyService.class);
 
         String value = fakeValuesService.resolve("property.regexify_cell", dummy, faker);
-        assertThat(value, isOneOf("479", "459"));
+        assertThat(value, is(oneOf("479", "459")));
         verify(faker).regexify("4[57]9");
     }
 
@@ -138,7 +144,7 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
         // then
         assertThat(actual, is("Yo!"));
         verify(dummy).hello();
-        verifyZeroInteractions(faker);
+        verifyNoMoreInteractions(faker);
     }
 
     @Test
@@ -311,7 +317,7 @@ public class FakeValuesServiceTest extends AbstractFakerTest {
 
         // then
         assertThat(actual, is("1 2"));
-        verifyZeroInteractions(faker);
+        verifyNoMoreInteractions(faker);
     }
     @Test
     public void FakeValuesServiceWithNullLocaleTest(){

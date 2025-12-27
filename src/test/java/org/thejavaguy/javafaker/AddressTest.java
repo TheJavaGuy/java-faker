@@ -1,21 +1,21 @@
 package org.thejavaguy.javafaker;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.emptyOrNullString;
+import static org.hamcrest.Matchers.emptyString;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.lessThanOrEqualTo;
+import static org.hamcrest.Matchers.not;
 import static org.thejavaguy.javafaker.matchers.IsANumber.isANumber;
 import static org.thejavaguy.javafaker.matchers.IsStringWithContents.isStringWithContents;
 import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.isEmptyOrNullString;
-import static org.hamcrest.Matchers.isEmptyString;
-import static org.hamcrest.Matchers.lessThanOrEqualTo;
-import static org.hamcrest.Matchers.not;
 
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 import java.util.Random;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class AddressTest extends AbstractFakerTest {
 
@@ -91,7 +91,7 @@ public class AddressTest extends AbstractFakerTest {
 
     @Test
     public void testStreetAddressIncludeSecondary() {
-        assertThat(faker.address().streetAddress(true), not(isEmptyString()));
+        assertThat(faker.address().streetAddress(true), is(not(emptyString())));
     }
 
     @Test
@@ -104,7 +104,7 @@ public class AddressTest extends AbstractFakerTest {
 
     @Test
     public void testFullAddress() {
-        assertThat(faker.address().fullAddress(), not(isEmptyOrNullString()));
+        assertThat(faker.address().fullAddress(), is(not(emptyOrNullString())));
     }
 
     @Test
@@ -122,7 +122,7 @@ public class AddressTest extends AbstractFakerTest {
     @Test
     public void testCountyByZipCode() {
         faker = new Faker(new Locale("en-US"));
-        assertThat(faker.address().countyByZipCode("47732"), not(isEmptyOrNullString()));
+        assertThat(faker.address().countyByZipCode("47732"), is(not(emptyOrNullString())));
     }
 
     @Test

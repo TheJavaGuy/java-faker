@@ -1,16 +1,15 @@
 package org.thejavaguy.javafaker.integration;
 
-import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 
 import java.util.Locale;
 
-import org.junit.Ignore;
-import org.junit.Test;
-
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.thejavaguy.javafaker.Faker;
 
-@Ignore
+@Disabled
 public class Issue194SlashFormatRegexIT {
 
     @Test

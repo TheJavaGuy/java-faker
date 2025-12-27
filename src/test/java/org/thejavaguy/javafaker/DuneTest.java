@@ -1,10 +1,10 @@
 package org.thejavaguy.javafaker;
 
-import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestTemplate;
 import org.thejavaguy.javafaker.repeating.Repeat;
 
 public class DuneTest extends AbstractFakerTest {
@@ -29,7 +29,7 @@ public class DuneTest extends AbstractFakerTest {
         assertThat(faker.dune().quote(), matchesRegularExpression("\\P{Cc}+"));
     }
 
-    @Test
+    @TestTemplate
     @Repeat(times = 10000)
     public void randomQuote() {
         assertThat(
@@ -42,7 +42,7 @@ public class DuneTest extends AbstractFakerTest {
         assertThat(faker.dune().saying(), matchesRegularExpression("\\P{Cc}+"));
     }
 
-    @Test
+    @TestTemplate
     @Repeat(times = 10000)
     public void randomSaying() {
         assertThat(
