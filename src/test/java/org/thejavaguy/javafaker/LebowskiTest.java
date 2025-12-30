@@ -1,23 +1,22 @@
 package org.thejavaguy.javafaker;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
 public class LebowskiTest extends AbstractFakerTest {
     @Test
     public void actor() {
-        assertThat(faker.lebowski().actor(), matchesRegularExpression("^([\\w]+ ?){1,3}$"));
+        assertThat(faker.lebowski().actor()).matches("^([\\w]+ ?){1,3}$");
     }
 
     @Test
     public void character() {
-        assertThat(faker.lebowski().character(), matchesRegularExpression("^([\\w]+ ?){1,3}$"));
+        assertThat(faker.lebowski().character()).matches("^([\\w]+ ?){1,3}$");
     }
 
     @Test
     public void quote() {
-        assertThat(faker.lebowski().quote(), matchesRegularExpression("^([\\w.,!?'-]+ ?)+$"));
+        assertThat(faker.lebowski().quote()).matches("^([\\w.,!?'-]+ ?)+$");
     }
 }

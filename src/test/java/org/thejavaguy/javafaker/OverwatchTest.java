@@ -1,8 +1,7 @@
 package org.thejavaguy.javafaker;
 
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 
 import org.junit.jupiter.api.Test;
 
@@ -10,12 +9,12 @@ public class OverwatchTest extends AbstractFakerTest {
 
     @Test
     public void hero() {
-        assertThat(faker.overwatch().hero(), matchesRegularExpression("^(\\w+\\.?\\s?)+$"));
+        assertThat(faker.overwatch().hero()).matches("^(\\w+\\.?\\s?)+$");
     }
 
     @Test
     public void location() {
-        assertThat(faker.overwatch().location(), matchesRegularExpression("^(.+'?:?\\s?)+$"));
+        assertThat(faker.overwatch().location()).matches("^(.+'?:?\\s?)+$");
     }
 
     @Test

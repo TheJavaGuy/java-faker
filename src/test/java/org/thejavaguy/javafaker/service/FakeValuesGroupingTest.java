@@ -1,8 +1,6 @@
 package org.thejavaguy.javafaker.service;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.notNullValue;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Locale;
 
@@ -23,8 +21,8 @@ public class FakeValuesGroupingTest {
 
     @Test
     public void handlesOneFakeValue() {
-        assertThat(fakeValuesGrouping.get("address"), is(addressValues.get("address")));
-        assertThat(fakeValuesGrouping.get("address"), is(notNullValue()));
+        assertThat(fakeValuesGrouping.get("address")).isEqualTo(addressValues.get("address"));
+        assertThat(fakeValuesGrouping.get("address")).isNotNull();
     }
 
     @Test
@@ -32,10 +30,10 @@ public class FakeValuesGroupingTest {
         FakeValues catValues = new FakeValues(Locale.ENGLISH, "cat.yml", "creature");
         fakeValuesGrouping.add(catValues);
 
-        assertThat(fakeValuesGrouping.get("address"), is(addressValues.get("address")));
-        assertThat(fakeValuesGrouping.get("address"), is(notNullValue()));
+        assertThat(fakeValuesGrouping.get("address")).isEqualTo(addressValues.get("address"));
+        assertThat(fakeValuesGrouping.get("address")).isNotNull();
 
-        assertThat(fakeValuesGrouping.get("creature"), is(catValues.get("creature")));
-        assertThat(fakeValuesGrouping.get("creature"), is(notNullValue()));
+        assertThat(fakeValuesGrouping.get("creature")).isEqualTo(catValues.get("creature"));
+        assertThat(fakeValuesGrouping.get("creature")).isNotNull();
     }
 }

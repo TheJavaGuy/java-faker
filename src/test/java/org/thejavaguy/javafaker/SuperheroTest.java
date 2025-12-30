@@ -1,7 +1,6 @@
 package org.thejavaguy.javafaker;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
@@ -9,26 +8,26 @@ public class SuperheroTest extends AbstractFakerTest {
 
     @Test
     public void testName() {
-        assertThat(faker.superhero().name(), matchesRegularExpression("[A-Za-z' -/]+"));
+        assertThat(faker.superhero().name()).matches("[A-Za-z' -/]+");
     }
 
     @Test
     public void testPrefix() {
-        assertThat(faker.superhero().prefix(), matchesRegularExpression("[A-Za-z -]+"));
+        assertThat(faker.superhero().prefix()).matches("[A-Za-z -]+");
     }
 
     @Test
     public void testSuffix() {
-        assertThat(faker.superhero().suffix(), matchesRegularExpression("[A-Za-z -]+"));
+        assertThat(faker.superhero().suffix()).matches("[A-Za-z -]+");
     }
 
     @Test
     public void testPower() {
-        assertThat(faker.superhero().power(), matchesRegularExpression("[A-Za-z/ -]+"));
+        assertThat(faker.superhero().power()).matches("[A-Za-z/ -]+");
     }
 
     @Test
     public void testDescriptor() {
-        assertThat(faker.superhero().descriptor(), matchesRegularExpression("[A-Za-z' -]+"));
+        assertThat(faker.superhero().descriptor()).matches("[A-Za-z' -]+");
     }
 }

@@ -1,9 +1,6 @@
 package org.thejavaguy.javafaker;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.in;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.oneOf;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,23 +19,23 @@ public class OptionsTest extends AbstractFakerTest {
 
     @Test
     public void testOptionWithArray() {
-        assertThat(faker.options().option(options), is(oneOf(options)));
+        assertThat(faker.options().option(options)).isIn((Object[]) options);
     }
 
     @Test
     public void testOptionWithVarargsString() {
-        assertThat(faker.options().option("A", "B", "C"), is(oneOf(options)));
+        assertThat(faker.options().option("A", "B", "C")).isIn((Object[]) options);
     }
 
     @Test
     public void testOptionWithVarargsInteger() {
         Integer[] integerOptions = new Integer[] { 1, 3, 4, 5};
-        assertThat(faker.options().option(1, 3, 4, 5), is(oneOf(integerOptions)));
+        assertThat(faker.options().option(1, 3, 4, 5)).isIn((Object[]) integerOptions);
     }
 
     @Test
     public void testOptionWithEnum() {
-        assertThat(faker.options().option(Day.class), is(oneOf(Day.values())));
+        assertThat(faker.options().option(Day.class)).isIn((Object[]) Day.values());
     }
 
     @Test
@@ -46,7 +43,7 @@ public class OptionsTest extends AbstractFakerTest {
         Integer[] array = new Integer[] { 1, 2, 3, 5, 8, 13, 21 };
 
         for (int i = 1; i < 10; i++) {
-            assertThat(faker.options().nextElement(array), is(in(array)));
+            assertThat(faker.options().nextElement(array)).isIn(array);
         }
     }
 
@@ -54,7 +51,7 @@ public class OptionsTest extends AbstractFakerTest {
     public void testNextListElement() {
         List<Integer> list = Arrays.asList(1, 2, 3, 5, 8, 13, 21);
         for (int i = 1; i < 10; i++) {
-            assertThat(faker.options().nextElement(list), is(in(list)));
+            assertThat(faker.options().nextElement(list)).isIn(list);
         }
     }
 

@@ -1,9 +1,8 @@
 package org.thejavaguy.javafaker;
 
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +11,7 @@ public class BojackHorsemanTest extends AbstractFakerTest {
     @Test
     public void testCharacters1(){
         Faker faker=new Faker();
-        assertThat(faker.bojackHorseman().characters(),matchesRegularExpression("[\\p{L}'()\\., 0-9-’’]+")); }
+        assertThat(faker.bojackHorseman().characters()).matches("[\\p{L}'()\\., 0-9-’’]+"); }
 
     @Test
     public void testQuotes1(){

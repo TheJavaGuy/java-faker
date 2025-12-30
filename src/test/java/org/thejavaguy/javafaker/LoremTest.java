@@ -1,14 +1,7 @@
 package org.thejavaguy.javafaker;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.emptyOrNullString;
-import static org.hamcrest.Matchers.emptyString;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,87 +17,87 @@ public class LoremTest extends AbstractFakerTest {
 
     @Test
     public void wordShouldNotBeNullOrEmpty() {
-        assertThat(faker.lorem().word(), is(not(emptyOrNullString())));
+        assertThat(faker.lorem().word()).isNotEmpty();
     }
 
     @Test
     public void testCharacter() {
-        assertThat(String.valueOf(faker.lorem().character()), matchesRegularExpression("[a-z\\d]{1}"));
+        assertThat(String.valueOf(faker.lorem().character())).matches("[a-z\\d]{1}");
     }
 
     @Test
     public void testCharacterIncludeUpperCase() {
-        assertThat(String.valueOf(faker.lorem().character(false)), matchesRegularExpression("[a-z\\d]{1}"));
-        assertThat(String.valueOf(faker.lorem().character(true)), matchesRegularExpression("[a-zA-Z\\d]{1}"));
+        assertThat(String.valueOf(faker.lorem().character(false))).matches("[a-z\\d]{1}");
+        assertThat(String.valueOf(faker.lorem().character(true))).matches("[a-zA-Z\\d]{1}");
     }
 
     @Test
     public void testCharacters() {
-        assertThat(faker.lorem().characters(), matchesRegularExpression("[a-z\\d]{255}"));
+        assertThat(faker.lorem().characters()).matches("[a-z\\d]{255}");
     }
 
     @Test
     public void testCharactersIncludeUpperCase() {
-        assertThat(faker.lorem().characters(false), matchesRegularExpression("[a-z\\d]{255}"));
-        assertThat(faker.lorem().characters(true), matchesRegularExpression("[a-zA-Z\\d]{255}"));
+        assertThat(faker.lorem().characters(false)).matches("[a-z\\d]{255}");
+        assertThat(faker.lorem().characters(true)).matches("[a-zA-Z\\d]{255}");
     }
 
     @Test
     public void testCharactersWithLength() {
-        assertThat(faker.lorem().characters(2), matchesRegularExpression("[a-z\\d]{2}"));
-        assertThat(faker.lorem().characters(500), matchesRegularExpression("[a-z\\d]{500}"));
-        assertThat(faker.lorem().characters(0), is(emptyString()));
-        assertThat(faker.lorem().characters(-1), is(emptyString()));
+        assertThat(faker.lorem().characters(2)).matches("[a-z\\d]{2}");
+        assertThat(faker.lorem().characters(500)).matches("[a-z\\d]{500}");
+        assertThat(faker.lorem().characters(0)).isEmpty();
+        assertThat(faker.lorem().characters(-1)).isEmpty();
     }
 
     @Test
     public void testCharactersWithLengthIncludeUppercase() {
-        assertThat(faker.lorem().characters(2, false), matchesRegularExpression("[a-z\\d]{2}"));
-        assertThat(faker.lorem().characters(500, false), matchesRegularExpression("[a-z\\d]{500}"));
-        assertThat(faker.lorem().characters(2, true), matchesRegularExpression("[a-zA-Z\\d]{2}"));
-        assertThat(faker.lorem().characters(500, true), matchesRegularExpression("[a-zA-Z\\d]{500}"));
-        assertThat(faker.lorem().characters(0, false), is(emptyString()));
-        assertThat(faker.lorem().characters(-1, true), is(emptyString()));
+        assertThat(faker.lorem().characters(2, false)).matches("[a-z\\d]{2}");
+        assertThat(faker.lorem().characters(500, false)).matches("[a-z\\d]{500}");
+        assertThat(faker.lorem().characters(2, true)).matches("[a-zA-Z\\d]{2}");
+        assertThat(faker.lorem().characters(500, true)).matches("[a-zA-Z\\d]{500}");
+        assertThat(faker.lorem().characters(0, false)).isEmpty();
+        assertThat(faker.lorem().characters(-1, true)).isEmpty();
     }
 
     @Test
     public void testCharactersMinimumMaximumLength() {
-        assertThat(faker.lorem().characters(1, 10), matchesRegularExpression("[a-z\\d]{1,10}"));
+        assertThat(faker.lorem().characters(1, 10)).matches("[a-z\\d]{1,10}");
     }
 
     @Test
     public void testCharactersMinimumMaximumLengthIncludeUppercase() {
-        assertThat(faker.lorem().characters(1, 10, true), matchesRegularExpression("[a-zA-Z\\d]{1,10}"));
+        assertThat(faker.lorem().characters(1, 10, true)).matches("[a-zA-Z\\d]{1,10}");
     }
 
     @Test
     public void testCharactersMinimumMaximumLengthIncludeUppercaseIncludeDigit() {
-        assertThat(faker.lorem().characters(1, 10, false, false), matchesRegularExpression("[a-zA-Z]{1,10}"));
-        assertThat(faker.lorem().characters(1, 10, true, true), matchesRegularExpression("[a-zA-Z\\d]{1,10}"));
+        assertThat(faker.lorem().characters(1, 10, false, false)).matches("[a-zA-Z]{1,10}");
+        assertThat(faker.lorem().characters(1, 10, true, true)).matches("[a-zA-Z\\d]{1,10}");
     }
 
     @Test
     public void testSentence() {
-        assertThat(faker.lorem().sentence(), matchesRegularExpression("(\\w+\\s?){4,10}\\."));
+        assertThat(faker.lorem().sentence()).matches("(\\w+\\s?){4,10}\\.");
     }
 
     @Test
     public void testSentenceWithWordCount() {
-        assertThat(faker.lorem().sentence(10), matchesRegularExpression("(\\w+\\s?){11,17}\\."));
+        assertThat(faker.lorem().sentence(10)).matches("(\\w+\\s?){11,17}\\.");
     }
 
     @Test
     public void testSentenceWithWordCountAndRandomWordsToAdd() {
-        assertThat(faker.lorem().sentence(10, 10), matchesRegularExpression("(\\w+\\s?){10,20}\\."));
+        assertThat(faker.lorem().sentence(10, 10)).matches("(\\w+\\s?){10,20}\\.");
     }
 
     @Test
     public void testSentenceFixedNumberOfWords() {
-        assertThat(faker.lorem().sentence(10, 0), matchesRegularExpression("(\\w+\\s?){10}\\."));
+        assertThat(faker.lorem().sentence(10, 0)).matches("(\\w+\\s?){10}\\.");
     }
 
     @Test
     public void testWords() {
-        assertThat(faker.lorem().words(), hasSize(greaterThanOrEqualTo(1)));
+        assertThat(faker.lorem().words()).hasSizeGreaterThanOrEqualTo(1);
     }
 }

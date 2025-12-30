@@ -1,8 +1,6 @@
 package org.thejavaguy.javafaker;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.apache.commons.validator.routines.checkdigit.LuhnCheckDigit;
 import org.junit.jupiter.api.Test;
@@ -19,22 +17,22 @@ public class FinanceTest extends AbstractFakerTest {
 
     private void assertCardLuhnDigit(String creditCard) {
         final String creditCardStripped = creditCard.replaceAll("-", "");
-        assertThat(LuhnCheckDigit.LUHN_CHECK_DIGIT.isValid(creditCardStripped), is(true));
+        assertThat(LuhnCheckDigit.LUHN_CHECK_DIGIT.isValid(creditCardStripped)).isEqualTo(true);
     }
 
     @Test
     public void bic() {
-        assertThat(faker.finance().bic(), matchesRegularExpression("([A-Z]){4}([A-Z]){2}([0-9A-Z]){2}([0-9A-Z]{3})?"));
+        assertThat(faker.finance().bic()).matches("([A-Z]){4}([A-Z]){2}([0-9A-Z]){2}([0-9A-Z]{3})?");
     }
 
     @Test
     public void iban() {
-        assertThat(faker.finance().iban(), matchesRegularExpression("[A-Z]{2}\\p{Alnum}{13,30}"));
+        assertThat(faker.finance().iban()).matches("[A-Z]{2}\\p{Alnum}{13,30}");
     }
 
     @Test
     public void ibanWithCountryCode() {
-        assertThat(faker.finance().iban("DE"), matchesRegularExpression("DE\\d{20}"));
+        assertThat(faker.finance().iban("DE")).matches("DE\\d{20}");
     }
 
     @Test

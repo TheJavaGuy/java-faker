@@ -1,7 +1,6 @@
 package org.thejavaguy.javafaker;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
@@ -9,21 +8,21 @@ public class BookTest extends AbstractFakerTest {
 
     @Test
     public void testTitle() {
-        assertThat(faker.book().title(), matchesRegularExpression("([\\p{L}'\\-\\?]+[!,]? ?){2,9}"));
+        assertThat(faker.book().title()).matches("([\\p{L}'\\-\\?]+[!,]? ?){2,9}");
     }
 
     @Test
     public void testAuthor() {
-        assertThat(faker.book().author(), matchesRegularExpression("([\\w']+\\.? ?){2,3}"));
+        assertThat(faker.book().author()).matches("([\\w']+\\.? ?){2,3}");
     }
 
     @Test
     public void testPublisher() {
-        assertThat(faker.book().publisher(), matchesRegularExpression("([\\p{L}'&\\-]+[,.]? ?){1,5}"));
+        assertThat(faker.book().publisher()).matches("([\\p{L}'&\\-]+[,.]? ?){1,5}");
     }
 
     @Test
     public void testGenre() {
-        assertThat(faker.book().genre(), matchesRegularExpression("([\\w/]+ ?){2,4}"));
+        assertThat(faker.book().genre()).matches("([\\w/]+ ?){2,4}");
     }
 }

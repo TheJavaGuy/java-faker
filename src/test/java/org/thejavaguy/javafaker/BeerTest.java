@@ -1,7 +1,6 @@
 package org.thejavaguy.javafaker;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
@@ -9,26 +8,26 @@ public class BeerTest extends AbstractFakerTest {
 
     @Test
     public void testName() {
-        assertThat(faker.beer().name(), matchesRegularExpression("[\\p{L}'()\\., 0-9-’’]+"));
+        assertThat(faker.beer().name()).matches("[\\p{L}'()\\., 0-9-’’]+");
     }
 
     @Test
     public void testStyle() {
-        assertThat(faker.beer().style(), matchesRegularExpression("[A-Za-z'() 0-9-]+"));
+        assertThat(faker.beer().style()).matches("[A-Za-z'() 0-9-]+");
     }
 
     @Test
     public void testHop() {
-        assertThat(faker.beer().hop(), matchesRegularExpression("[A-Za-z'’()\\. 0-9-]+"));
+        assertThat(faker.beer().hop()).matches("[A-Za-z'’()\\. 0-9-]+");
     }
 
     @Test
     public void testMalt() {
-        assertThat(faker.beer().malt(), matchesRegularExpression("[A-Za-z'() 0-9-]+"));
+        assertThat(faker.beer().malt()).matches("[A-Za-z'() 0-9-]+");
     }
 
     @Test
     public void testYeast() {
-        assertThat(faker.beer().yeast(), matchesRegularExpression("[\\p{L}'() 0-9-ö]+"));
+        assertThat(faker.beer().yeast()).matches("[\\p{L}'() 0-9-ö]+");
     }
 }

@@ -1,7 +1,6 @@
 package org.thejavaguy.javafaker;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
@@ -9,36 +8,36 @@ public class FoodTest extends AbstractFakerTest {
 
     @Test
     public void ingredient() {
-        assertThat(faker.food().ingredient(), matchesRegularExpression("[A-Za-z- ]+"));
+        assertThat(faker.food().ingredient()).matches("[A-Za-z- ]+");
     }
 
     @Test
     public void spice() {
-        assertThat(faker.food().spice(), matchesRegularExpression("[A-Za-z1-9- ]+"));
+        assertThat(faker.food().spice()).matches("[A-Za-z1-9- ]+");
     }
 
     @Test
     public void dish() {
-        assertThat(faker.food().dish(), matchesRegularExpression("\\P{Cc}+"));
+        assertThat(faker.food().dish()).matches("\\P{Cc}+");
     }
 
     @Test
     public void fruit() {
-        assertThat(faker.food().fruit(), matchesRegularExpression("[A-Za-z1-9- ]+"));
+        assertThat(faker.food().fruit()).matches("[A-Za-z1-9- ]+");
     }
 
     @Test
     public void vegetable() {
-        assertThat(faker.food().vegetable(), matchesRegularExpression("[A-Za-z1-9- ]+"));
+        assertThat(faker.food().vegetable()).matches("[A-Za-z1-9- ]+");
     }
 
     @Test
     public void sushi() {
-        assertThat(faker.food().sushi(), matchesRegularExpression("[A-Za-z1-9- ]+"));
+        assertThat(faker.food().sushi()).matches("[A-Za-z1-9- ]+");
     }
 
     @Test
     public void measurement() {
-        assertThat(faker.food().measurement(), matchesRegularExpression("[A-Za-z1-9/ ]+{2}"));
+        assertThat(faker.food().measurement()).matches("[A-Za-z1-9/ ]+{2}");
     }
 }

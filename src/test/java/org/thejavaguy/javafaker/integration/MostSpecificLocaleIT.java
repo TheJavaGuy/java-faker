@@ -1,9 +1,6 @@
 package org.thejavaguy.javafaker.integration;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.Locale;
@@ -36,9 +33,9 @@ public class MostSpecificLocaleIT {
         final List<String> enDefaultCountries = (List<String>) en.fetchObject("address.default_country");
         final List<String> enUsDefaultCountries = (List<String>) en_US.fetchObject("address.default_country");
 
-        assertThat(enDefaultCountries, hasSize(1));
-        assertThat(enUsDefaultCountries, hasSize(3));
+        assertThat(enDefaultCountries).hasSize(1);
+        assertThat(enUsDefaultCountries).hasSize(3);
 
-        assertThat("the default country for en is not en_US", enDefaultCountries, is(not(enUsDefaultCountries)));
+        assertThat(enDefaultCountries).as("the default country for en is not en_US").isNotEqualTo(enUsDefaultCountries);
     }
 }
