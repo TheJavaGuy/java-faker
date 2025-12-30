@@ -1,9 +1,6 @@
 package org.thejavaguy.javafaker;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.emptyOrNullString;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
@@ -25,37 +22,37 @@ public class RelationshipTest extends AbstractFakerTest {
 
     @Test
     public void anyTest() {
-        assertThat(faker.relationships().any(), is(not(emptyOrNullString())));
+        assertThat(faker.relationships().any()).isNotEmpty();
     }
 
     @Test
     public void directTest() {
-        assertThat(faker.relationships().direct(), is(not(emptyOrNullString())));
+        assertThat(faker.relationships().direct()).isNotEmpty();
     }
 
     @Test
     public void extendedTest() {
-        assertThat(faker.relationships().extended(), is(not(emptyOrNullString())));
+        assertThat(faker.relationships().extended()).isNotEmpty();
     }
 
     @Test
     public void inLawTest() {
-        assertThat(faker.relationships().inLaw(), is(not(emptyOrNullString())));
+        assertThat(faker.relationships().inLaw()).isNotEmpty();
     }
 
     @Test
     public void spouseTest() {
-        assertThat(faker.relationships().spouse(), is(not(emptyOrNullString())));
+        assertThat(faker.relationships().spouse()).isNotEmpty();
     }
 
     @Test
     public void parentTest() {
-        assertThat(faker.relationships().parent(), is(not(emptyOrNullString())));
+        assertThat(faker.relationships().parent()).isNotEmpty();
     }
 
     @Test
     public void siblingTest() {
-        assertThat(faker.relationships().sibling(), is(not(emptyOrNullString())));
+        assertThat(faker.relationships().sibling()).isNotEmpty();
     }
 
     @Test

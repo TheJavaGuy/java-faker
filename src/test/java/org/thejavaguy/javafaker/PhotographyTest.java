@@ -1,10 +1,9 @@
 package org.thejavaguy.javafaker;
 
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestTemplate;
@@ -58,14 +57,14 @@ public class PhotographyTest extends AbstractFakerTest{
     @Repeat(times=7)
     public void shutter() {
         final String value = faker.photography().shutter();
-        assertThat(value, matchesRegularExpression("\\d{1,}\\/{0,1}\\d*"));
+        assertThat(value).matches("\\d{1,}\\/{0,1}\\d*");
     }
 
     @TestTemplate
     @Repeat(times=7)
     public void iso() {
         final String value = faker.photography().iso();
-        assertThat(value, matchesRegularExpression("\\d{1,}"));
+        assertThat(value).matches("\\d{1,}");
     }
 
     private static void assertNonNullOrEmpty(String value) {

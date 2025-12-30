@@ -1,9 +1,6 @@
 package org.thejavaguy.javafaker;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-import static org.hamcrest.Matchers.is;
-import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,17 +8,17 @@ public class NationTest extends AbstractFakerTest {
 
     @Test
     public void nationality() {
-        assertThat(faker.nation().nationality(), matchesRegularExpression("\\P{Cc}+"));
+        assertThat(faker.nation().nationality()).matches("\\P{Cc}+");
     }
 
     @Test
     public void language() {
-        assertThat(faker.nation().language(), matchesRegularExpression("[A-Za-z ]+"));
+        assertThat(faker.nation().language()).matches("[A-Za-z ]+");
     }
 
     @Test
     public void capitalCity() {
-        assertThat(faker.nation().capitalCity(), matchesRegularExpression("[A-Za-z .'()-]+"));
+        assertThat(faker.nation().capitalCity()).matches("[A-Za-z .'()-]+");
     }
 
     @Test
@@ -29,8 +26,8 @@ public class NationTest extends AbstractFakerTest {
         String flag = faker.nation().flag();
 
         // all utf8 emoji flags are at least 4 characters long and start with the same char
-        assertThat(flag.length(), is(greaterThanOrEqualTo(4)));
-        assertThat(flag.charAt(0), is('\uD83C'));
+        assertThat(flag.length()).isGreaterThanOrEqualTo(4);
+        assertThat(flag.charAt(0)).isEqualTo('\uD83C');
     }
 
 }

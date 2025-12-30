@@ -1,14 +1,6 @@
 package org.thejavaguy.javafaker.integration;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.emptyOrNullString;
-import static org.hamcrest.Matchers.endsWith;
-import static org.hamcrest.Matchers.instanceOf;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
-import static org.hamcrest.Matchers.startsWith;
-import static org.hamcrest.core.IsNull.notNullValue;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.reflections.ReflectionUtils.getAllMethods;
 import static org.reflections.ReflectionUtils.withModifier;
 import static org.reflections.ReflectionUtils.withParametersCount;
@@ -208,11 +200,12 @@ public class FakerIT {
             final Object returnValue = method.invoke(object);
             logger.info("{} {}.{} = {}", locale, object.getClass().getSimpleName().toLowerCase(), method.getName(), returnValue);
             String failureReason = method + " on " + object;
-            assertThat(failureReason, returnValue, is(instanceOf(String.class)));
+            assertThat(returnValue).as(failureReason).isInstanceOf(String.class);
             final String returnValueAsString = (String) returnValue;
-            assertThat(failureReason, returnValueAsString, is(not(emptyOrNullString())));
-            assertThat(failureReason + " is a slash encoded regex", returnValueAsString,
-                       not(allOf(startsWith("/"), endsWith("/"))));
+            assertThat(returnValueAsString).as(failureReason).isNotEmpty();
+            assertThat(returnValueAsString)
+                       .as(failureReason + " is a slash encoded regex")
+                       .doesNotMatch("^/.*/$");
         }
     }
 
@@ -226,20 +219,20 @@ public class FakerIT {
     @ParameterizedTest(name = "testing locale {0} and random {1}")
     public void testExceptionsNotCoveredInAboveTest(Locale locale,Random random) {
         initFakerIT(locale, random);
-        assertThat(faker.bothify("####???"), is(notNullValue()));
-        assertThat(faker.letterify("????"), is(notNullValue()));
-        assertThat(faker.numerify("####"), is(notNullValue()));
+        assertThat(faker.bothify("####???")).isNotNull();
+        assertThat(faker.letterify("????")).isNotNull();
+        assertThat(faker.numerify("####")).isNotNull();
 
-        assertThat(faker.lorem().paragraph(1), is(notNullValue()));
-        assertThat(faker.lorem().paragraphs(1), is(notNullValue()));
+        assertThat(faker.lorem().paragraph(1)).isNotNull();
+        assertThat(faker.lorem().paragraphs(1)).isNotNull();
 
-        assertThat(faker.lorem().sentence(1), is(notNullValue()));
-        assertThat(faker.lorem().sentences(1), is(notNullValue()));
+        assertThat(faker.lorem().sentence(1)).isNotNull();
+        assertThat(faker.lorem().sentences(1)).isNotNull();
 
-        assertThat(faker.address().streetAddress(), is(notNullValue()));
+        assertThat(faker.address().streetAddress()).isNotNull();
 
-        assertThat(faker.lorem().words(), is(notNullValue()));
-        assertThat(faker.lorem().words(1), is(notNullValue()));
+        assertThat(faker.lorem().words()).isNotNull();
+        assertThat(faker.lorem().words(1)).isNotNull();
     }
 
 }

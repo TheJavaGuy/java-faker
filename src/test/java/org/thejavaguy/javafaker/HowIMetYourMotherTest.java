@@ -1,8 +1,7 @@
 package org.thejavaguy.javafaker;
 
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +9,7 @@ public class HowIMetYourMotherTest extends AbstractFakerTest {
 
     @Test
     public void character() {
-        assertThat(faker.howIMetYourMother().character(), matchesRegularExpression("^(\\w+\\.?\\s?)+$"));
+        assertThat(faker.howIMetYourMother().character()).matches("^(\\w+\\.?\\s?)+$");
     }
 
     @Test
@@ -20,7 +19,7 @@ public class HowIMetYourMotherTest extends AbstractFakerTest {
 
     @Test
     public void highFive() {
-        assertThat(faker.howIMetYourMother().highFive(), matchesRegularExpression("^(\\w+-?\\s?)+$"));
+        assertThat(faker.howIMetYourMother().highFive()).matches("^(\\w+-?\\s?)+$");
     }
 
     @Test

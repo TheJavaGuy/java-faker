@@ -1,7 +1,6 @@
 package org.thejavaguy.javafaker.integration;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -45,9 +44,7 @@ public class UkLocalDirectivesTest {
             startsWithFemPrefix |= streetName.startsWith(femPrefix);
         }
 
-        assertThat("the streetname starts with a fem or masc prefix",
-                startsWithFemPrefix || startsWithMascPrefix,
-                is(true));
+        assertThat(startsWithFemPrefix || startsWithMascPrefix).as("the streetname starts with a fem or masc prefix").isEqualTo(true);
     }
 
 

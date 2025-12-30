@@ -1,9 +1,6 @@
 package org.thejavaguy.javafaker;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.emptyOrNullString;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,41 +8,41 @@ public class ElderScrollsTest extends AbstractFakerTest  {
 
     @Test
     public void testCity() {
-        assertThat(faker.elderScrolls().city(), is(not(emptyOrNullString())));
+        assertThat(faker.elderScrolls().city()).isNotEmpty();
     }
 
     @Test
     public void testCreature() {
-        assertThat(faker.elderScrolls().creature(), is(not(emptyOrNullString())));
+        assertThat(faker.elderScrolls().creature()).isNotEmpty();
     }
 
     @Test
     public void testDragon() {
-        assertThat(faker.elderScrolls().dragon(), is(not(emptyOrNullString())));
+        assertThat(faker.elderScrolls().dragon()).isNotEmpty();
     }
 
     @Test
     public void testFirstName() {
-        assertThat(faker.elderScrolls().firstName(), is(not(emptyOrNullString())));
+        assertThat(faker.elderScrolls().firstName()).isNotEmpty();
     }
 
     @Test
     public void testLastName() {
-        assertThat(faker.elderScrolls().lastName(), is(not(emptyOrNullString())));
+        assertThat(faker.elderScrolls().lastName()).isNotEmpty();
     }
 
     @Test
     public void testRace() {
-        assertThat(faker.elderScrolls().race(), is(not(emptyOrNullString())));
+        assertThat(faker.elderScrolls().race()).isNotEmpty();
     }
 
     @Test
     public void testRegion() {
-        assertThat(faker.elderScrolls().region(), is(not(emptyOrNullString())));
+        assertThat(faker.elderScrolls().region()).isNotEmpty();
     }
 
     @Test
     public void testQuote() {
-        assertThat(faker.elderScrolls().quote(), is(not(emptyOrNullString())));
+        assertThat(faker.elderScrolls().quote()).isNotEmpty();
     }
 }

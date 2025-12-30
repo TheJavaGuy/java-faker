@@ -1,9 +1,6 @@
 package org.thejavaguy.javafaker;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.emptyOrNullString;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +8,6 @@ public class MatzTest extends AbstractFakerTest {
 
     @Test
     public void quote() {
-        assertThat(faker.matz().quote(), is(not(emptyOrNullString())));
+        assertThat(faker.matz().quote()).isNotEmpty();
     }
 }

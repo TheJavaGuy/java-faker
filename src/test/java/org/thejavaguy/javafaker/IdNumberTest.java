@@ -1,7 +1,6 @@
 package org.thejavaguy.javafaker;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Locale;
 
@@ -11,24 +10,24 @@ public class IdNumberTest extends AbstractFakerTest {
 
     @Test
     public void testValid() {
-        assertThat(faker.idNumber().valid(), matchesRegularExpression("[0-8]\\d{2}-\\d{2}-\\d{4}"));
+        assertThat(faker.idNumber().valid()).matches("[0-8]\\d{2}-\\d{2}-\\d{4}");
     }
 
     @Test
     public void testInvalid() {
-        assertThat(faker.idNumber().invalid(), matchesRegularExpression("[0-9]\\d{2}-\\d{2}-\\d{4}"));
+        assertThat(faker.idNumber().invalid()).matches("[0-9]\\d{2}-\\d{2}-\\d{4}");
     }
 
     @Test
     public void testSsnValid() {
-        assertThat(faker.idNumber().valid(), matchesRegularExpression("[0-8]\\d{2}-\\d{2}-\\d{4}"));
+        assertThat(faker.idNumber().valid()).matches("[0-8]\\d{2}-\\d{2}-\\d{4}");
     }
 
     @Test
     public void testValidSwedishSsn() {
         final Faker f = new Faker(new Locale("sv_SE"));
         for (int i = 0; i < 100; i++) {
-            assertThat(f.idNumber().valid(), matchesRegularExpression("\\d{6}[-+]\\d{4}"));
+            assertThat(f.idNumber().valid()).matches("\\d{6}[-+]\\d{4}");
         }
     }
 
@@ -36,7 +35,7 @@ public class IdNumberTest extends AbstractFakerTest {
     public void testInvalidSwedishSsn() {
         final Faker f = new Faker(new Locale("sv_SE"));
         for (int i = 0; i < 100; i++) {
-            assertThat(f.idNumber().invalid(), matchesRegularExpression("\\d{6}[-+]\\d{4}"));
+            assertThat(f.idNumber().invalid()).matches("\\d{6}[-+]\\d{4}");
         }
     }
 }

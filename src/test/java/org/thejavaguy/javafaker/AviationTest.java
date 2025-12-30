@@ -1,8 +1,6 @@
 package org.thejavaguy.javafaker;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.thejavaguy.javafaker.matchers.IsStringWithContents.isStringWithContents;
-import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
@@ -10,16 +8,16 @@ public class AviationTest extends AbstractFakerTest {
 
     @Test
     public void airport() {
-        assertThat(faker.aviation().airport(), matchesRegularExpression("\\w{4}"));
+        assertThat(faker.aviation().airport()).matches("\\w{4}");
     }
 
     @Test
     public void aircraft() {
-        assertThat(faker.aviation().aircraft(), isStringWithContents());
+        assertThat(faker.aviation().aircraft()).isNotBlank();
     }
 
     @Test
     public void metar() {
-        assertThat(faker.aviation().METAR(), isStringWithContents());
+        assertThat(faker.aviation().METAR()).isNotBlank();
     }
 }

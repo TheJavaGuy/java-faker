@@ -1,7 +1,6 @@
 package org.thejavaguy.javafaker;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
@@ -9,31 +8,31 @@ public class WitcherTest extends AbstractFakerTest {
 
     @Test
     public void testCharacter() {
-        assertThat(faker.witcher().character(), matchesRegularExpression("[A-Za-z' -éúï]+"));
+        assertThat(faker.witcher().character()).matches("[A-Za-z' -éúï]+");
     }
 
     @Test
     public void testWitcher() {
-        assertThat(faker.witcher().witcher(), matchesRegularExpression("[A-Za-z -ëúï]+"));
+        assertThat(faker.witcher().witcher()).matches("[A-Za-z -ëúï]+");
     }
 
     @Test
     public void testSchool() {
-        assertThat(faker.witcher().school(), matchesRegularExpression("[A-Za-z]+"));
+        assertThat(faker.witcher().school()).matches("[A-Za-z]+");
     }
 
     @Test
     public void testLocation() {
-        assertThat(faker.witcher().location(), matchesRegularExpression("[A-Za-z -áâé]+"));
+        assertThat(faker.witcher().location()).matches("[A-Za-z -áâé]+");
     }
 
     @Test
     public void testQuote() {
-        assertThat(faker.witcher().quote(), matchesRegularExpression("[-A-Za-z0-9 —;…\\?\\!\\.’‘'”“,\\[\\]]+"));
+        assertThat(faker.witcher().quote()).matches("[-A-Za-z0-9 —;…\\?\\!\\.’‘'”“,\\[\\]]+");
     }
 
     @Test
     public void testMonster() {
-        assertThat(faker.witcher().monster(), matchesRegularExpression("[A-Za-z -]+"));
+        assertThat(faker.witcher().monster()).matches("[A-Za-z -]+");
     }
 }

@@ -1,8 +1,7 @@
 package org.thejavaguy.javafaker;
 
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,22 +10,22 @@ public class BasketballTest extends AbstractFakerTest {
     @Test
     public void testPositions(){
         Faker faker=new Faker();
-        assertThat(faker.basketball().positions(),matchesRegularExpression("[\\p{L}'()\\., 0-9-’’]+")); }
+        assertThat(faker.basketball().positions()).matches("[\\p{L}'()\\., 0-9-’’]+"); }
 
     @Test
     public void testTeams(){
         Faker faker=new Faker();
-        assertThat(faker.basketball().teams(),matchesRegularExpression("[\\p{L}'()\\., 0-9-’’]+")); }
+        assertThat(faker.basketball().teams()).matches("[\\p{L}'()\\., 0-9-’’]+"); }
 
     @Test
     public void testCoaches(){
         Faker faker=new Faker();
-        assertThat(faker.basketball().coaches(),matchesRegularExpression("[\\p{L}'()\\., 0-9-’’]+")); }
+        assertThat(faker.basketball().coaches()).matches("[\\p{L}'()\\., 0-9-’’]+"); }
 
     @Test
     public void testPlayers(){
         Faker faker=new Faker();
-        assertThat(faker.basketball().players(),matchesRegularExpression("[\\p{L}'()\\., 0-9-’’]+")); }
+        assertThat(faker.basketball().players()).matches("[\\p{L}'()\\., 0-9-’’]+"); }
 
     @Test
     public void testPositionsWith10000Times(){

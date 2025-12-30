@@ -1,14 +1,7 @@
 package org.thejavaguy.javafaker.service;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.greaterThan;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-import static org.hamcrest.Matchers.lessThan;
-import static org.hamcrest.Matchers.lessThanOrEqualTo;
-import static org.hamcrest.core.CombinableMatcher.both;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -50,10 +43,10 @@ public class RandomServiceTest extends AbstractFakerTest {
     @ParameterizedTest(name = "Created via {0}")
     public void testLongWithinBoundary(String ignoredTitle,RandomService service) {
         initRandomServiceTest(ignoredTitle, service);
-        assertThat(randomService.nextLong(1), is(0L));
+        assertThat(randomService.nextLong(1)).isEqualTo(0L);
 
         for (int i = 1; i < 10; i++) {
-            assertThat(randomService.nextLong(2), lessThan(2L));
+            assertThat(randomService.nextLong(2)).isLessThan(2L);
         }
     }
 
@@ -61,8 +54,8 @@ public class RandomServiceTest extends AbstractFakerTest {
     @ParameterizedTest(name = "Created via {0}")
     public void testLongMaxBoundary(String ignoredTitle,RandomService service) {
         initRandomServiceTest(ignoredTitle, service);
-        assertThat(randomService.nextLong(Long.MAX_VALUE), greaterThan(0L));
-        assertThat(randomService.nextLong(Long.MAX_VALUE), lessThan(Long.MAX_VALUE));
+        assertThat(randomService.nextLong(Long.MAX_VALUE)).isGreaterThan(0L);
+        assertThat(randomService.nextLong(Long.MAX_VALUE)).isLessThan(Long.MAX_VALUE);
     }
 
     @MethodSource("data")
@@ -70,7 +63,7 @@ public class RandomServiceTest extends AbstractFakerTest {
     public void testIntInRange(String ignoredTitle,RandomService service) {
         initRandomServiceTest(ignoredTitle, service);
         for (int i = 1; i < 100; i++) {
-            assertThat(randomService.nextInt(-5, 5), both(lessThanOrEqualTo(5)).and(greaterThanOrEqualTo(-5)));
+            assertThat(randomService.nextInt(-5, 5)).isGreaterThanOrEqualTo(-5).isLessThanOrEqualTo(5);
         }
     }
 
@@ -78,13 +71,13 @@ public class RandomServiceTest extends AbstractFakerTest {
     @ParameterizedTest(name = "Created via {0}")
     public void testHex(String ignoredTitle,RandomService service) {
         initRandomServiceTest(ignoredTitle, service);
-        assertThat(randomService.hex(8), matchesRegularExpression("^[0-9A-F]{8}$"));
+        assertThat(randomService.hex(8)).matches("^[0-9A-F]{8}$");
     }
 
     @MethodSource("data")
     @ParameterizedTest(name = "Created via {0}")
     public void testDefaultHex(String ignoredTitle,RandomService service) {
         initRandomServiceTest(ignoredTitle, service);
-        assertThat(randomService.hex(), matchesRegularExpression("^[0-9A-F]{8}$"));
+        assertThat(randomService.hex()).matches("^[0-9A-F]{8}$");
     }
 }

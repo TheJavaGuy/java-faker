@@ -1,7 +1,6 @@
 package org.thejavaguy.javafaker;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.thejavaguy.javafaker.matchers.MatchesRegularExpression.matchesRegularExpression;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
@@ -9,16 +8,16 @@ public class ColorTest extends AbstractFakerTest {
 
     @Test
     public void testName() {
-        assertThat(faker.color().name(), matchesRegularExpression("(\\w+ ?){1,2}"));
+        assertThat(faker.color().name()).matches("(\\w+ ?){1,2}");
     }
 
     @Test
     public void testHex() {
-        assertThat(faker.color().hex(), matchesRegularExpression("^#[0-9A-F]{6}$"));
+        assertThat(faker.color().hex()).matches("^#[0-9A-F]{6}$");
     }
 
     @Test
     public void testHexNoHashSign() {
-        assertThat(faker.color().hex(false), matchesRegularExpression("^[0-9A-F]{6}$"));
+        assertThat(faker.color().hex(false)).matches("^[0-9A-F]{6}$");
     }
 }
