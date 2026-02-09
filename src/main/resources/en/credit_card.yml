@@ -1,0 +1,34 @@
+en:
+  faker:
+    credit_card:
+      # Card number patterns with Luhn checksum placeholder (L)
+      # Note: These extend/complement patterns in finance.yml
+      visa:
+        - "/4###########L/"
+        - "/4###-####-####-###L/"
+      mastercard:
+        - "/5[1-5]##-####-####-###L/"
+        - "/2[2-7]##-####-####-###L/"
+      american_express:
+        - "/34##-######-####L/"
+        - "/37##-######-####L/"
+      discover:
+        - "/6011-####-####-###L/"
+        - "/65##-####-####-###L/"
+      diners_club:
+        - "/36##-######-###L/"
+        - "/38##-######-###L/"
+      jcb:
+        - "/3528-####-####-###L/"
+        - "/3589-####-####-###L/"
+      unionpay:
+        - "/62##-####-####-###L/"
+        - "/62##-####-####-####-##L/"
+      # CVV patterns
+      cvv:
+        standard: "###"
+        amex: "####"
+      # Cardholder name patterns (uses name faker internally)
+      cardholder_name_format: "#{Name.first_name} #{Name.last_name}"
+      # Issuing banks
+      banks: ["Chase", "Bank of America", "Wells Fargo", "Citibank", "Capital One", "US Bank", "PNC Bank", "TD Bank", "Truist", "Goldman Sachs", "American Express", "Discover Financial", "Barclays", "HSBC", "Synchrony"]
