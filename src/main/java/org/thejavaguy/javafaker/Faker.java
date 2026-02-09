@@ -44,6 +44,7 @@ public class Faker {
     private final Code code;
     private final Coin coin;
     private final Finance finance;
+    private final CreditCard creditCard;
     private final Food food;
     private final GameOfThrones gameOfThrones;
     private final Gender gender;
@@ -160,6 +161,7 @@ public class Faker {
         this.code = new Code(this);
         this.file = new File(this);
         this.finance = new Finance(this);
+        this.creditCard = new CreditCard(this);
         this.food = new Food(this);
         this.gameOfThrones = new GameOfThrones(this);
         this.gender = new Gender(this);
@@ -457,6 +459,15 @@ public class Faker {
 
     public Finance finance() {
         return finance;
+    }
+
+    /**
+     * Returns a CreditCard instance for generating credit card fake data.
+     *
+     * @return a {@link CreditCard} instance
+     */
+    public CreditCard creditCard() {
+        return creditCard;
     }
 
     public Food food() {
