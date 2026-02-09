@@ -107,6 +107,7 @@ public class Faker {
     private final Sip sip;
     private final EnglandFootBall englandfootball;
     private final Mountain mountain;
+    private final Shipping shipping;
 
     public Faker() {
         this(Locale.ENGLISH);
@@ -223,6 +224,7 @@ public class Faker {
         this.sip = new Sip(this);
         this.englandfootball = new EnglandFootBall(this);
         this.mountain = new Mountain(this);
+        this.shipping = new Shipping(this);
     }
 
     /**
@@ -690,6 +692,15 @@ public class Faker {
     public EnglandFootBall englandfootball() { return englandfootball; }
 
     public Mountain mountain() { return mountain; }
+
+    /**
+     * Returns a Shipping instance for generating shipping-related fake data.
+     *
+     * @return a {@link Shipping} instance
+     */
+    public Shipping shipping() {
+        return shipping;
+    }
 
     public String resolve(String key) {
         return this.fakeValuesService.resolve(key, this, this);

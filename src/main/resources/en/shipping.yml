@@ -1,0 +1,11 @@
+en:
+  faker:
+    shipping:
+      carriers: ["UPS", "FedEx", "USPS", "DHL", "Amazon Logistics", "OnTrac", "LaserShip", "Purolator", "Canada Post", "Royal Mail", "Deutsche Post", "Japan Post", "Australia Post", "China Post", "SF Express"]
+      shipping_methods: ["Standard Ground", "Express", "Overnight", "Two-Day", "Priority", "Economy", "First Class", "Freight", "Same Day", "Next Day Air", "Ground Advantage", "Parcel Select", "Media Mail", "International Economy", "International Express"]
+      statuses: ["pending", "label_created", "picked_up", "in_transit", "out_for_delivery", "delivered", "attempted_delivery", "exception", "returned", "on_hold", "customs_clearance", "at_local_facility"]
+      package_types: ["Box", "Envelope", "Padded Envelope", "Tube", "Flat Rate Box", "Poly Mailer", "Bubble Mailer", "Crate", "Pallet", "Barrel", "Bag", "Custom"]
+      handling_instructions: ["Fragile", "Handle With Care", "This Side Up", "Do Not Stack", "Keep Dry", "Temperature Controlled", "Refrigerate", "No Signature Required", "Signature Required", "Adult Signature Required", "Leave at Door", "Do Not Bend"]
+      exception_types: ["Address Unknown", "Recipient Unavailable", "Weather Delay", "Customs Hold", "Damaged in Transit", "Missing Documentation", "Incorrect Address", "Package Refused", "Business Closed", "Security Delay"]
+      weight_units: ["lb", "oz", "kg", "g"]
+      dimension_units: ["in", "cm", "mm"]
