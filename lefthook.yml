@@ -1,0 +1,24 @@
+# Lefthook configuration for java-faker
+# Install hooks with: just hooks-install
+# See: https://github.com/evilmartians/lefthook
+
+pre-commit:
+  parallel: true
+  commands:
+    compile:
+      run: just build
+
+    format-check:
+      glob: "*.java"
+      run: just format-check
+
+    yaml-validate:
+      glob: "*.{yml,yaml}"
+      run: just yaml-check
+
+# Optional: enforce conventional commit messages
+# Uncomment to enable
+# commit-msg:
+#   commands:
+#     conventional:
+#       run: just commit-msg-check {1}
