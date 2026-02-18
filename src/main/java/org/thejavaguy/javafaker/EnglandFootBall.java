@@ -2,17 +2,17 @@ package org.thejavaguy.javafaker;
 
 public class EnglandFootBall {
 
-    private final Faker faker;
+  private final Faker faker;
 
-    protected EnglandFootBall(final Faker faker) {
-        this.faker = faker;
-    }
+  protected EnglandFootBall(final Faker faker) {
+    this.faker = faker;
+  }
 
-    public String league() {
-        return faker.fakeValuesService().resolve("englandfootball.leagues",this,faker);
-    }
+  public String league() {
+    return faker.fakeValuesService().resolve("englandfootball.leagues", this, faker);
+  }
 
-    public String team() {
-        return faker.fakeValuesService().resolve("englandfootball.teams",this,faker);
-    }
+  public String team() {
+    return faker.fakeValuesService().resolve("englandfootball.teams", this, faker);
+  }
 }

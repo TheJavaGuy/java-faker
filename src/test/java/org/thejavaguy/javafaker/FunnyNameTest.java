@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 
 public class FunnyNameTest extends AbstractFakerTest {
 
-    @Test
-    public void name() {
-        assertThat(faker.funnyName().name()).matches("^(\\w+\\.?\\s?'?-?)+$");
-    }
+  @Test
+  public void name() {
+    assertThat(faker.funnyName().name()).matches("^(\\w+\\.?\\s?'?-?)+$");
+  }
 }

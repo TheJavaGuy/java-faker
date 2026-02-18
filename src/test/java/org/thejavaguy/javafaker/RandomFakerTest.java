@@ -3,64 +3,63 @@ package org.thejavaguy.javafaker;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Random;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class RandomFakerTest extends AbstractFakerTest {
 
-    private static final int CONSTANT_SEED_VALUE = 10;
-    private Faker faker;
-    private Random random;
+  private static final int CONSTANT_SEED_VALUE = 10;
+  private Faker faker;
+  private Random random;
 
-    @BeforeEach
-    public void before() {
-        super.before();
-        random = new Random();
-        faker = new Faker(random);
-    }
+  @BeforeEach
+  public void before() {
+    super.before();
+    random = new Random();
+    faker = new Faker(random);
+  }
 
-    @Test
-    public void testNumerifyRandomnessCanBeControlled() {
-        resetRandomSeed();
-        final String firstInvocation = faker.numerify("###");
+  @Test
+  public void testNumerifyRandomnessCanBeControlled() {
+    resetRandomSeed();
+    final String firstInvocation = faker.numerify("###");
 
-        resetRandomSeed();
-        final String secondInvocation = faker.numerify("###");
-        assertThat(firstInvocation).isEqualTo(secondInvocation);
-    }
+    resetRandomSeed();
+    final String secondInvocation = faker.numerify("###");
+    assertThat(firstInvocation).isEqualTo(secondInvocation);
+  }
 
-    @Test
-    public void testLetterifyRandomnessCanBeControlled() {
-        resetRandomSeed();
-        final String firstInvocation = faker.letterify("???");
+  @Test
+  public void testLetterifyRandomnessCanBeControlled() {
+    resetRandomSeed();
+    final String firstInvocation = faker.letterify("???");
 
-        resetRandomSeed();
-        final String secondInvocation = faker.letterify("???");
-        assertThat(firstInvocation).isEqualTo(secondInvocation);
-    }
+    resetRandomSeed();
+    final String secondInvocation = faker.letterify("???");
+    assertThat(firstInvocation).isEqualTo(secondInvocation);
+  }
 
-    @Test
-    public void testNameRandomnessCanBeControlled() {
-        resetRandomSeed();
-        final String firstInvocation = faker.name().name();
+  @Test
+  public void testNameRandomnessCanBeControlled() {
+    resetRandomSeed();
+    final String firstInvocation = faker.name().name();
 
-        resetRandomSeed();
-        final String secondInvocation = faker.name().name();
-        assertThat(firstInvocation).isEqualTo(secondInvocation);
-    }
+    resetRandomSeed();
+    final String secondInvocation = faker.name().name();
+    assertThat(firstInvocation).isEqualTo(secondInvocation);
+  }
 
-    @Test
-    public void testEmailRandomnessCanBeControlled() {
-        resetRandomSeed();
-        final String firstInvocation = faker.internet().emailAddress();
+  @Test
+  public void testEmailRandomnessCanBeControlled() {
+    resetRandomSeed();
+    final String firstInvocation = faker.internet().emailAddress();
 
-        resetRandomSeed();
-        final String secondInvocation = faker.internet().emailAddress();
-        assertThat(firstInvocation).isEqualTo(secondInvocation);
-    }
+    resetRandomSeed();
+    final String secondInvocation = faker.internet().emailAddress();
+    assertThat(firstInvocation).isEqualTo(secondInvocation);
+  }
 
-    private void resetRandomSeed() {
-        random.setSeed(CONSTANT_SEED_VALUE);
-    }
+  private void resetRandomSeed() {
+    random.setSeed(CONSTANT_SEED_VALUE);
+  }
 }
