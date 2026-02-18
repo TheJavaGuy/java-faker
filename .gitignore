@@ -8,3 +8,4 @@ target
 /dependency-reduced-pom.xml
 META-INF/
 bin/
+**/settings.local.json
