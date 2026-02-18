@@ -1,29 +1,29 @@
 package org.thejavaguy.javafaker;
 
 public class PhoneNumber {
-    private final Faker faker;
+  private final Faker faker;
 
-    protected PhoneNumber(Faker faker) {
-        this.faker = faker;
-    }
+  protected PhoneNumber(Faker faker) {
+    this.faker = faker;
+  }
 
-    public String cellPhone() {
-        return faker.numerify(faker.fakeValuesService().resolve("cell_phone.formats", this, faker));
-    }
+  public String cellPhone() {
+    return faker.numerify(faker.fakeValuesService().resolve("cell_phone.formats", this, faker));
+  }
 
-    public String phoneNumber() {
-        return faker.numerify(faker.fakeValuesService().resolve("phone_number.formats", this, faker));
-    }
+  public String phoneNumber() {
+    return faker.numerify(faker.fakeValuesService().resolve("phone_number.formats", this, faker));
+  }
 
-    public String extension() {
-        return subscriberNumber();
-    }
+  public String extension() {
+    return subscriberNumber();
+  }
 
-    public String subscriberNumber(int length) {
-        return faker.numerify("#".repeat(Math.max(0, length)));
-    }
+  public String subscriberNumber(int length) {
+    return faker.numerify("#".repeat(Math.max(0, length)));
+  }
 
-    public String subscriberNumber() {
-        return subscriberNumber(4);
-    }
+  public String subscriberNumber() {
+    return subscriberNumber(4);
+  }
 }

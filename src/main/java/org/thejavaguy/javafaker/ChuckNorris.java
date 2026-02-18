@@ -1,13 +1,13 @@
 package org.thejavaguy.javafaker;
 
 public class ChuckNorris {
-    private final Faker faker;
+  private final Faker faker;
 
-    protected ChuckNorris(Faker faker) {
-        this.faker = faker;
-    }
+  protected ChuckNorris(Faker faker) {
+    this.faker = faker;
+  }
 
-    public String fact() {
-        return faker.fakeValuesService().resolve("chuck_norris.fact", this, faker);
-    }
+  public String fact() {
+    return faker.fakeValuesService().resolve("chuck_norris.fact", this, faker);
+  }
 }

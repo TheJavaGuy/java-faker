@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
  */
 public class YodaTest extends AbstractFakerTest {
 
-    @Test
-    public void quote() {
-        assertThat(faker.yoda().quote()).isNotEmpty();
-    }
+  @Test
+  public void quote() {
+    assertThat(faker.yoda().quote()).isNotEmpty();
+  }
 }

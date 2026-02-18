@@ -6,9 +6,8 @@ import org.junit.jupiter.api.Test;
 
 public class AquaTeenHungerForceTest extends AbstractFakerTest {
 
-    @Test
-    public void character() {
-        assertThat(faker.aquaTeenHungerForce().character()).matches("[A-Za-z .]+");
-    }
-
+  @Test
+  public void character() {
+    assertThat(faker.aquaTeenHungerForce().character()).matches("[A-Za-z .]+");
+  }
 }

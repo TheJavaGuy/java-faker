@@ -2,17 +2,17 @@ package org.thejavaguy.javafaker;
 
 public class Pokemon {
 
-    private final Faker faker;
+  private final Faker faker;
 
-    protected Pokemon(Faker faker) {
-        this.faker = faker;
-    }
+  protected Pokemon(Faker faker) {
+    this.faker = faker;
+  }
 
-    public String name() {
-        return faker.resolve("games.pokemon.names");
-    }
+  public String name() {
+    return faker.resolve("games.pokemon.names");
+  }
 
-    public String location() {
-        return faker.resolve("games.pokemon.locations");
-    }
+  public String location() {
+    return faker.resolve("games.pokemon.locations");
+  }
 }

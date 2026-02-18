@@ -1,13 +1,13 @@
 package org.thejavaguy.javafaker;
 
 public class Hipster {
-    private final Faker faker;
+  private final Faker faker;
 
-    protected Hipster(final Faker faker) {
-        this.faker = faker;
-    }
+  protected Hipster(final Faker faker) {
+    this.faker = faker;
+  }
 
-    public String word() {
-        return faker.resolve("hipster.words");
-    }
+  public String word() {
+    return faker.resolve("hipster.words");
+  }
 }

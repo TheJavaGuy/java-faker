@@ -2,13 +2,13 @@ package org.thejavaguy.javafaker;
 
 public class Artist {
 
-    private final Faker faker;
+  private final Faker faker;
 
-    protected Artist(Faker faker) {
-        this.faker = faker;
-    }
+  protected Artist(Faker faker) {
+    this.faker = faker;
+  }
 
-    public String name() {
-        return faker.fakeValuesService().fetchString("artist.names");
-    }
+  public String name() {
+    return faker.fakeValuesService().fetchString("artist.names");
+  }
 }

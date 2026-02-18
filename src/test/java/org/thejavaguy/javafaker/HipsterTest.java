@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 
 public class HipsterTest extends AbstractFakerTest {
 
-    @Test
-    public void word() {
-        assertThat(faker.hipster().word()).matches("^([\\w-+&']+ ?)+$");
-    }
+  @Test
+  public void word() {
+    assertThat(faker.hipster().word()).matches("^([\\w-+&']+ ?)+$");
+  }
 }

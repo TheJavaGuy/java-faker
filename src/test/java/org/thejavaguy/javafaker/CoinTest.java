@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 
 public class CoinTest extends AbstractFakerTest {
 
-    @Test
-    public void coinFlip() {
-        assertThat(faker.coin().flip()).matches("\\w+");
-    }
+  @Test
+  public void coinFlip() {
+    assertThat(faker.coin().flip()).matches("\\w+");
+  }
 }
