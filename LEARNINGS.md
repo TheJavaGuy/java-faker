@@ -44,6 +44,37 @@ banks: ["Chase", "Wells Fargo"]
 
 **Benefit**: Catches configuration issues before writing hundreds of lines of code.
 
+### 4. YAML numeric values cause `ClassCastException` in `fetchString()`
+
+**Problem**: Unquoted single-digit numbers in YAML are parsed as integers, not strings. Calling `fetchString()` on them throws `ClassCastException: Integer cannot be cast to String` at runtime.
+
+**Wrong**:
+```yaml
+doors: [1, 2, 3, 4]
+```
+
+**Correct**:
+```yaml
+doors: ['1', '2', '3', '4']
+```
+
+**Rule**: Always quote values in YAML lists that will be accessed via `fetchString()`, even if they look numeric.
+
+### 5. Use `bothify(pattern, true)` for uppercase license plates / codes
+
+**Problem**: `bothify(pattern)` substitutes `?` placeholders with **lowercase** letters, producing values like `"g99-seb5"` instead of `"G99-SEB5"`.
+
+**Solution**: Pass `true` as the second argument to get uppercase output:
+```java
+// Wrong — generates lowercase letters
+return faker.bothify(pattern);
+
+// Correct — generates uppercase letters
+return faker.bothify(pattern, true);
+```
+
+**When to use**: Any time the generated string should be uppercase (license plates, tracking numbers, codes). See `Shipping.trackingNumberUps()` for the established pattern in this codebase.
+
 ---
 
-*Last updated: 2026-02-09*
+*Last updated: 2026-02-28*

@@ -108,6 +108,7 @@ public class Faker {
   private final EnglandFootBall englandfootball;
   private final Mountain mountain;
   private final Shipping shipping;
+  private final Vehicle vehicle;
 
   public Faker() {
     this(Locale.ENGLISH);
@@ -226,6 +227,7 @@ public class Faker {
     this.englandfootball = new EnglandFootBall(this);
     this.mountain = new Mountain(this);
     this.shipping = new Shipping(this);
+    this.vehicle = new Vehicle(this);
   }
 
   /**
@@ -724,6 +726,15 @@ public class Faker {
    */
   public Shipping shipping() {
     return shipping;
+  }
+
+  /**
+   * Returns a Vehicle instance for generating vehicle-related fake data.
+   *
+   * @return a {@link Vehicle} instance
+   */
+  public Vehicle vehicle() {
+    return vehicle;
   }
 
   public String resolve(String key) {
