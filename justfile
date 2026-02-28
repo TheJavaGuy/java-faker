@@ -81,19 +81,19 @@ yaml-check:
     fi
     for file in $yaml_files; do
         if ! ./mvnw validate -f "$file" &>/dev/null; then
-            # Fallback to basic syntax check using Python or yq if available
-            if command -v python3 &>/dev/null; then
-                python3 -c "import yaml; yaml.safe_load(open('$file'))" || {
-                    echo "YAML validation failed for: $file"
-                    exit 1
-                }
-            elif command -v yq &>/dev/null; then
+            # Fallback to basic syntax check using yq or Python if available
+            if command -v yq &>/dev/null; then
                 yq eval "$file" > /dev/null || {
                     echo "YAML validation failed for: $file"
                     exit 1
                 }
+            elif python3 -c "import yaml" &>/dev/null 2>&1; then
+                python3 -c "import yaml; yaml.safe_load(open('$file'))" || {
+                    echo "YAML validation failed for: $file"
+                    exit 1
+                }
             else
-                echo "Warning: No YAML validator available (install python3 or yq)"
+                echo "Warning: No YAML validator available (install yq or python3 pyyaml)"
                 exit 0
             fi
         fi
