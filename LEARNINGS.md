@@ -75,6 +75,12 @@ return faker.bothify(pattern, true);
 
 **When to use**: Any time the generated string should be uppercase (license plates, tracking numbers, codes). See `Shipping.trackingNumberUps()` for the established pattern in this codebase.
 
+### 6. `gh issue create` body must use `--body-file` for multi-line content
+
+**Problem**: Passing a multi-line `--body` string with backticks directly in a shell heredoc causes `gh` to misparse it as extra arguments (especially when the body contains backtick-quoted words like `faker`).
+
+**Solution**: Write the body to a temp file and use `--body-file /tmp/issue-body.md` instead of `--body "$(cat ...)"`.
+
 ---
 
-*Last updated: 2026-02-28*
+*Last updated: 2026-03-01*
