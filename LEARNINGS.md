@@ -81,6 +81,12 @@ return faker.bothify(pattern, true);
 
 **Solution**: Write the body to a temp file and use `--body-file /tmp/issue-body.md` instead of `--body "$(cat ...)"`.
 
+### 7. Skills with `disable-model-invocation: true` cannot be called via the Skill tool
+
+**Problem**: Invoking a skill that has `disable-model-invocation: true` via the Skill tool raises an error and wastes a round-trip.
+
+**Solution**: Follow the SKILL.md instructions manually, step by step. The `disable-model-invocation` flag means the skill is a pure prompt template — not a model-callable tool.
+
 ---
 
 *Last updated: 2026-03-01*
