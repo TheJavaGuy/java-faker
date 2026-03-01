@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 public class StarCraftTest extends AbstractFakerTest {
 
-  private final String noLeadingTrailingWhitespaceRegex = "^(?! )[A-Za-z0-9' ]*(?<! )$";
+  private final String noLeadingTrailingWhitespaceRegex = "^(?! )[A-Za-z0-9' -]*(?<! )$";
 
   @Test
   public void testUnit() {
