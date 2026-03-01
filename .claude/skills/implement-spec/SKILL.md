@@ -1,12 +1,12 @@
 ---
 name: implement-spec
-description: Implements a new Java faker feature end-to-end from a spec file. Creates a GitHub issue, a kebab-case feature branch, writes all Java and YAML files, commits, and opens a PR via create-pr.sh. Invoke manually with the path to a spec file.
+description: Implements a spec end-to-end from a spec file. Creates a GitHub issue, a kebab-case feature branch, writes all required files, commits, and opens a PR via create-pr.sh. Works for new faker providers as well as general workflow or tooling specs. Invoke manually with the path to a spec file.
 argument-hint: <path/to/SPEC.md>
 disable-model-invocation: true
 allowed-tools: Bash, Read, Write, Edit, Glob, Grep
 ---
 
-Implement the Java faker feature described in the spec file below.
+Implement the feature described in the spec file below.
 
 ---
 
@@ -25,10 +25,26 @@ Follow every step in order. Do not skip any step.
 ### Step 1 — Understand the spec
 
 Read the spec above carefully. Identify:
-- The feature name (e.g., "CreditCard", "Subscription")
-- All files to create or modify (YAML, Java class, Faker.java, test class)
-- The complete list of public methods and their expected behavior
+- The feature name (e.g., "CreditCard", "Subscription", "PreCommitHooks")
+- All files to create or modify (from the spec's **File Locations** table or equivalent section)
+- The complete list of public methods / deliverables and their expected behavior
 - The verification checklist at the bottom of the spec
+
+**Classify the spec** — decide which category it falls into:
+- **New faker**: the primary deliverable is a new Java faker provider (YAML data file, Java class, Faker.java registration, test class).
+- **General**: anything else (workflow tooling, build config, documentation changes, etc.).
+
+Record this classification in your working memory; it drives conditional guidance in Step 4.
+
+### Step 1b — Read LEARNINGS.md
+
+Before touching any code, read `LEARNINGS.md` at the repository root:
+
+```bash
+cat LEARNINGS.md
+```
+
+Apply every relevant lesson during implementation in Step 4. These are hard-won lessons from previous implementations — ignoring them causes the same mistakes to recur.
 
 ### Step 2 — Create a GitHub issue
 
@@ -45,25 +61,26 @@ Record the issue number printed (e.g., `#42`). You will reference it in the comm
 
 ### Step 3 — Create a feature branch
 
-Derive a descriptive kebab-case branch name from the feature name. Pattern:
+Derive a descriptive kebab-case branch name from the spec's content:
 
-```
-add-<feature-name>-faker
-```
-
-Examples: `add-credit-card-faker`, `add-markdown-faker`, `add-shipping-faker`.
+- **New faker spec**: `add-<feature-name>-faker` (e.g., `add-credit-card-faker`, `add-markdown-faker`)
+- **General spec**: a name that reflects the nature of the change (e.g., `add-pre-commit-hooks`, `update-build-config`, `fix-yaml-quoting`)
 
 ```bash
 git checkout master
 git pull
-git checkout -b add-<feature-name>-faker
+git checkout -b <derived-branch-name>
 ```
 
 ### Step 4 — Implement the spec
 
+> **Apply every lesson from LEARNINGS.md as you implement.** Do not skip lessons that are relevant to the files you are creating or modifying.
+
 Create or modify every file listed in the spec's **File Locations** table. Implement exactly what the spec describes — no more, no less.
 
-**Typical files for a new faker:**
+---
+
+#### If the spec is a **new faker**:
 
 1. **YAML data file** — `src/main/resources/en/<feature>.yml`
    - Match the structure shown in the spec
@@ -96,7 +113,35 @@ If all tests pass, also run the full suite to check for regressions:
 ./mvnw test
 ```
 
-### Step 5 — Commit
+---
+
+#### If the spec is **general** (non-faker):
+
+Follow the file list from the spec's **File Locations** table (or equivalent section) exactly. Do not apply faker-specific assumptions. Implement each file as the spec describes, then verify using whatever verification steps the spec prescribes (e.g., running a script, checking tool output, reviewing generated config).
+
+### Step 5 — Reflect and update LEARNINGS.md
+
+Before committing, pause and reflect on what happened during this implementation session.
+
+Ask yourself:
+- Did I make any mistakes that cost time to debug?
+- Was any information in the spec contradictory or ambiguous?
+- Were there non-obvious gotchas in the codebase (naming conventions, YAML quirks, test patterns)?
+- Was there missing context that would have saved effort if documented upfront?
+
+For each genuine finding, add a concise numbered entry to `LEARNINGS.md` at the repository root, following the existing format:
+
+```
+## <N>. <Short heading>
+
+**Problem**: <what went wrong or was unclear>
+
+**Solution/Rule**: <the rule or fix to apply next time>
+```
+
+Only add entries for lessons that are not already documented. Skip anything already covered.
+
+### Step 6 — Commit
 
 Stage only the files you created or modified. Commit with a message that references the issue number:
 
@@ -105,7 +150,7 @@ git add src/
 git commit -m "add <FeatureName> faker (closes #<issue-number>)"
 ```
 
-### Step 6 — Push and open PR
+### Step 7 — Push and open PR
 
 Push the branch and create the PR using the existing helper script:
 
