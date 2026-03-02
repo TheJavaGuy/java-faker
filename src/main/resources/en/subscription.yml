@@ -1,8 +1,13 @@
 en:
   faker:
     subscription:
-      plans: ["Free Trial", "Basic", "Starter", "Essential", "Student", "Bronze", "Standard", "Silver", "Gold", "Platinum", "Professional", "Business", "Diamond", "Premium"]
-      statuses: ["Active", "Idle", "Blocked", "Pending"]
-      payment_methods: ["Credit card", "Debit card", "Paypal", "Cash", "Money transfer", "Bitcoins", "Cheque", "Apple Pay", "Google Pay", "WeChat Pay", "Alipay", "Visa checkout"]
-      subscription_terms: ["Daily", "Weekly", "Monthly", "Annual", "Biennal", "Triennal", "Quinquennal", "Lifetime"]
-      payment_terms: ["Payment in advance", "Monthly", "Annual", "Full subscription"]
+      plan_names: ["Free", "Starter", "Basic", "Standard", "Professional", "Pro", "Premium", "Business", "Enterprise", "Ultimate", "Growth", "Scale", "Team", "Individual", "Student", "Family", "Unlimited"]
+      statuses: ["active", "inactive", "canceled", "expired", "past_due", "trialing", "paused", "pending", "suspended"]
+      payment_methods: ["Credit Card", "Debit Card", "PayPal", "Bank Transfer", "ACH", "Wire Transfer", "Apple Pay", "Google Pay", "Invoice", "Check", "Cryptocurrency"]
+      billing_cycles: ["monthly", "quarterly", "semi-annually", "annually", "bi-annually", "weekly", "bi-weekly"]
+      payment_terms: ["Net 15", "Net 30", "Net 45", "Net 60", "Due on Receipt", "Prepaid"]
+      currencies: ["USD", "EUR", "GBP", "CAD", "AUD", "JPY", "CHF", "INR", "BRL", "MXN"]
+      features: ["Unlimited Users", "API Access", "Priority Support", "Custom Branding", "Advanced Analytics", "SSO Integration", "Audit Logs", "Data Export", "Dedicated Account Manager", "Custom Integrations", "99.9% SLA", "24/7 Support", "White Label", "Multi-tenant", "HIPAA Compliance", "SOC 2 Compliance", "Unlimited Storage", "Advanced Security", "Role-based Access", "Custom Workflows"]
+      subscription_types: ["SaaS", "Streaming", "Membership", "License", "Service", "Content", "Software", "Platform"]
+      cancellation_reasons: ["Too expensive", "Not using enough", "Found alternative", "Missing features", "Poor customer support", "Technical issues", "Company closed", "Temporary pause", "Switching plans", "Budget cuts"]
+      renewal_types: ["Auto-renew", "Manual renewal", "No renewal"]

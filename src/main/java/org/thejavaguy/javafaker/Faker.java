@@ -108,6 +108,7 @@ public class Faker {
   private final EnglandFootBall englandfootball;
   private final Mountain mountain;
   private final Shipping shipping;
+  private final Subscription subscription;
   private final Vehicle vehicle;
 
   public Faker() {
@@ -227,6 +228,7 @@ public class Faker {
     this.englandfootball = new EnglandFootBall(this);
     this.mountain = new Mountain(this);
     this.shipping = new Shipping(this);
+    this.subscription = new Subscription(this);
     this.vehicle = new Vehicle(this);
   }
 
@@ -735,6 +737,15 @@ public class Faker {
    */
   public Vehicle vehicle() {
     return vehicle;
+  }
+
+  /**
+   * Returns a Subscription instance for generating subscription-related fake data.
+   *
+   * @return a {@link Subscription} instance
+   */
+  public Subscription subscription() {
+    return subscription;
   }
 
   public String resolve(String key) {
