@@ -87,6 +87,12 @@ return faker.bothify(pattern, true);
 
 **Solution**: Follow the SKILL.md instructions manually, step by step. The `disable-model-invocation` flag means the skill is a pure prompt template — not a model-callable tool.
 
+### 8. `git pull` fails when there are unstaged changes on master
+
+**Problem**: When invoking `implement-spec` with no argument, the changes are already present as unstaged modifications. Running `git checkout master && git pull` fails with `error: cannot pull with rebase: You have unstaged changes`.
+
+**Solution**: When already on `master` with the target changes present, skip `git pull` and just create the feature branch directly with `git checkout -b <branch>`. The unstaged changes carry over to the new branch automatically.
+
 ---
 
-*Last updated: 2026-03-01*
+*Last updated: 2026-03-02*

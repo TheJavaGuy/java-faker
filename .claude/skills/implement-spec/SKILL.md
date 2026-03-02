@@ -1,19 +1,19 @@
 ---
 name: implement-spec
-description: Implements a spec end-to-end from a spec file. Creates a GitHub issue, a kebab-case feature branch, writes all required files, commits, and opens a PR via create-pr.sh. Works for new faker providers as well as general workflow or tooling specs. Invoke manually with the path to a spec file.
-argument-hint: <path/to/SPEC.md>
+description: Implements a spec end-to-end from a spec file. Creates a GitHub issue, a kebab-case feature branch, writes all required files, commits, and opens a PR via create-pr.sh. Works for new faker providers as well as general workflow or tooling specs. Invoke manually with the path to a spec file, or with no argument to implement from current git changes.
+argument-hint: [path/to/SPEC.md]
 disable-model-invocation: true
 allowed-tools: Bash, Read, Write, Edit, Glob, Grep
 ---
 
-Implement the feature described in the spec file below.
+Implement the feature described below.
 
 ---
 
-## Spec file: $ARGUMENTS
+## Spec content
 
 ```
-!`cat "$ARGUMENTS"`
+!`if [ -n "$ARGUMENTS" ]; then cat "$ARGUMENTS"; else git diff HEAD; git status --short; fi`
 ```
 
 ---
@@ -48,20 +48,20 @@ Apply every relevant lesson during implementation in Step 4. These are hard-won 
 
 ### Step 2 — Create a GitHub issue
 
-Create an issue in the `TheJavaGuy/java-faker` repository. Derive the title from the spec's **Overview** section (one concise sentence). Use the full spec content as the body.
+Create an issue in the `TheJavaGuy/java-faker` repository. Derive the title from the spec's **Overview** section (one concise sentence).
 
-```bash
-gh issue create \
-  --repo TheJavaGuy/java-faker \
-  --title "<feature title from spec Overview>" \
-  --body "$(cat '$ARGUMENTS')"
-```
+- If a spec file was provided (`$ARGUMENTS` is non-empty): write the body to a temp file and use `--body-file` (required to avoid backtick/shell parsing issues — see LEARNINGS.md #6):
+  ```bash
+  cat '$ARGUMENTS' > /tmp/issue-body.md
+  gh issue create --repo TheJavaGuy/java-faker --title "<title>" --body-file /tmp/issue-body.md
+  ```
+- If no spec file was provided: derive the body from the git diff summary you read in Step 1, write it to `/tmp/issue-body.md`, then use `--body-file`.
 
 Record the issue number printed (e.g., `#42`). You will reference it in the commit message.
 
 ### Step 3 — Create a feature branch
 
-Derive a descriptive kebab-case branch name from the spec's content:
+Derive a descriptive kebab-case branch name from the feature being implemented:
 
 - **New faker spec**: `add-<feature-name>-faker` (e.g., `add-credit-card-faker`, `add-markdown-faker`)
 - **General spec**: a name that reflects the nature of the change (e.g., `add-pre-commit-hooks`, `update-build-config`, `fix-yaml-quoting`)
