@@ -12,7 +12,8 @@ Run the following commands in order:
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
 # Switch to master and pull
-git checkout master && git pull
+git fetch --all --prune --jobs=10
+git switch master && git pull
 
 # Delete the feature branch (-D handles branches already merged via remote)
 [ "$BRANCH" != "master" ] && git branch -D "$BRANCH" && echo "Deleted branch: $BRANCH"
