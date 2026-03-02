@@ -109,6 +109,7 @@ public class Faker {
   private final Mountain mountain;
   private final Shipping shipping;
   private final Subscription subscription;
+  private final Temporal temporal;
   private final Vehicle vehicle;
 
   public Faker() {
@@ -229,6 +230,7 @@ public class Faker {
     this.mountain = new Mountain(this);
     this.shipping = new Shipping(this);
     this.subscription = new Subscription(this);
+    this.temporal = new Temporal(this);
     this.vehicle = new Vehicle(this);
   }
 
@@ -746,6 +748,16 @@ public class Faker {
    */
   public Subscription subscription() {
     return subscription;
+  }
+
+  /**
+   * Returns a Temporal instance for generating date/time fake data using the modern {@code
+   * java.time} API.
+   *
+   * @return a {@link Temporal} instance
+   */
+  public Temporal temporal() {
+    return temporal;
   }
 
   public String resolve(String key) {
